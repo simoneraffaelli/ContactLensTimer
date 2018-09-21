@@ -27,4 +27,7 @@
 
     <!--   NotificationAction   -->
     <string name="not_action_label">Silence</string>
+
+    <!--   LIbraryItemRow   -->
+    <string name="library_item_auth_label">Made By</string>
 </resources>

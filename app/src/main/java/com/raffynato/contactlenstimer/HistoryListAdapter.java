@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.ViewHolder> {
 
     private List<LensesInUse> mDataset;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView titleLx;
-        public TextView titleRx;
+    protected static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView titleLx;
+        TextView titleRx;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -28,8 +28,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public MyAdapter(ArrayList<Lens> ll) {
-        if(ll != null) {
+    public HistoryListAdapter(ArrayList<Lens> ll) {
+        if (ll != null) {
             List<LensesInUse> liul = new ArrayList<>();
             ListIterator<Lens> li = ll.listIterator();
             while (li.hasNext()) {

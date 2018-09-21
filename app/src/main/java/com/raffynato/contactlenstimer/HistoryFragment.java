@@ -55,7 +55,7 @@ public class HistoryFragment extends Fragment implements PullToDismiss.Listener 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-        MyAdapter adapter = new MyAdapter(l);
+        HistoryListAdapter adapter = new HistoryListAdapter(l);
         recyclerView.setAdapter(adapter);
 
         adapter.notifyDataSetChanged();
