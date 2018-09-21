@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.raffynato.contactlenstimer"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    applicationVariants.all { variant ->
+        variant.resValue "string", "versionName", variant.versionName
+    }
+        buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
+    implementation 'com.android.support:preference-v7:28.0.0-rc02'
+    implementation 'com.android.support:design:28.0.0-rc02'
+    implementation 'com.android.support:recyclerview-v7:28.0.0-rc02'
+    implementation 'joda-time:joda-time:2.9.4'
+    implementation 'com.github.fatihsokmen:pulltodismiss:1.1'
+    implementation 'com.github.badoualy:datepicker-timeline:c6dcd05737'
+    implementation 'info.hoang8f:android-segmented:1.0.6'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+}
+
+apply plugin: 'com.google.gms.google-services'

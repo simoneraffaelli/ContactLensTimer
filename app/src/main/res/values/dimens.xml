@@ -1,0 +1,19 @@
+<resources>
+    <!--   FragmentHome -->
+    <dimen name="chip_vertical_margin">8dp</dimen>
+    <dimen name="divider_horizontal_margin">8dp</dimen>
+
+    <!--   LensLayout   -->
+    <dimen name="lenslayout_general_padding">10dp</dimen>
+    <dimen name="lens_icon_dimen">75dp</dimen>
+    <dimen name="remaining_days_dimen">25sp</dimen>
+    <dimen name="barchart_vertical_margin">4dp</dimen>
+    <dimen name="barhcart_height">10dp</dimen>
+
+    <dimen name="hist_padding_items">8dp</dimen>
+
+    <dimen name="chip_stroke_width">1dp</dimen>
+    <dimen name="chip_group_padding">4dp</dimen>
+
+
+</resources>

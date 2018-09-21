@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.raffynato.contactlenstimer.PullToDismiss xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom">
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="6dp"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <info.hoang8f.android.segmented.SegmentedGroup
+            xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/segmented2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:orientation="horizontal"
+            segmentedgroup:sc_border_width="2dp"
+            segmentedgroup:sc_corner_radius="10dp"
+            segmentedgroup:sc_tint_color="@color/colorAccent"
+            segmentedgroup:sc_checked_text_color="@android:color/white"
+            segmentedgroup:layout_constraintLeft_toLeftOf="parent"
+            segmentedgroup:layout_constraintRight_toRightOf="parent"
+            segmentedgroup:layout_constraintBottom_toBottomOf="parent"
+            segmentedgroup:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/radio_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/anl_switch_left"
+                android:checked="true"
+                style="@style/RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/anl_switch_right"
+                style="@style/RadioButton" />
+        </info.hoang8f.android.segmented.SegmentedGroup>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#30000000" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/add_new_left_lens"
+            android:visibility="visible">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/anl_datepicker_desc"
+                android:labelFor="@+id/datepicker_lx"/>
+            <com.github.badoualy.datepicker.DatePickerTimeline
+                android:id="@+id/datepicker_lx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mti_tabSelectedColor="@color/colorAccent"
+                app:mti_bgLblDateSelectedColor="@color/colorAccent"
+                app:mti_ringLblDateSelectedColor="@color/almostBlue"
+                app:mti_tabBeforeSelectionColor="@color/almostBlue"
+                app:mti_lblDateColor="@color/almostBlue"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/anl_combo_desc"
+                android:labelFor="@+id/spinner_lx"/>
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinner_lx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/add_new_right_lens"
+            android:visibility="invisible">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/anl_datepicker_desc"
+                android:labelFor="@+id/datepicker_rx"/>
+            <com.github.badoualy.datepicker.DatePickerTimeline
+                android:id="@+id/datepicker_rx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mti_tabSelectedColor="@color/colorAccent"
+                app:mti_bgLblDateSelectedColor="@color/colorAccent"
+                app:mti_ringLblDateSelectedColor="@color/almostBlue"
+                app:mti_tabBeforeSelectionColor="@color/almostBlue"
+                app:mti_lblDateColor="@color/almostBlue"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/anl_combo_desc"
+                android:labelFor="@+id/spinner_rx"/>
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinner_rx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
+</com.raffynato.contactlenstimer.PullToDismiss>
