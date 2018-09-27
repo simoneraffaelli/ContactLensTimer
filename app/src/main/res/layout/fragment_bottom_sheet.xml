@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomsheetfrag"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:layout_marginTop="4dp"
-    app:layout_behavior="@string/bottom_sheet_behavior"
-    android:id="@+id/bottomsheetfrag"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:layout_behavior="@string/bottom_sheet_behavior">
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_drawer_menu"
-        android:id="@+id/navigationView"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/bottom_nav_drawer_menu" />
 </android.support.constraint.ConstraintLayout>

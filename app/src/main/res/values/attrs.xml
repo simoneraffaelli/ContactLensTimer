@@ -2,11 +2,11 @@
 <resources>
     <declare-styleable name="HorizontalProgressBar">
         <attr name="progressBarColor" format="color" />
-        <attr name="BarHeight" format="dimension"/>
-        <attr name="BarWidth" format="dimension"/>
+        <attr name="BarHeight" format="dimension" />
+        <attr name="BarWidth" format="dimension" />
         <attr name="containerBarColor" format="color" />
-        <attr name="showText" format="boolean"/>
-        <attr name="textColor" format="color"/>
-        <attr name="textToBarMargin" format="dimension"/>
+        <attr name="showText" format="boolean" />
+        <attr name="textColor" format="color" />
+        <attr name="textToBarMargin" format="dimension" />
     </declare-styleable>
 </resources>

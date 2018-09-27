@@ -15,5 +15,7 @@
     <dimen name="chip_stroke_width">1dp</dimen>
     <dimen name="chip_group_padding">4dp</dimen>
 
+    <dimen name="libdialog_title">20sp</dimen>
+
 
 </resources>

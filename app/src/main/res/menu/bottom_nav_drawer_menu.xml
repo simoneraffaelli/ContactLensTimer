@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
-    <item
-        android:id="@+id/version"
-        android:title="@string/bsm_version" />
-    <item
-        android:id="@+id/dev"
-        android:title="@string/bsm_developer" />
+        <item
+            android:id="@+id/test_notification"
+            android:title="@string/bsm_test_notif" />
+        <item
+            android:id="@+id/version"
+            android:title="@string/bsm_version" />
+        <item
+            android:id="@+id/dev"
+            android:title="@string/bsm_developer" />
 
-    <item
-        android:id="@+id/lib_used"
-        android:title="@string/bsm_libraries" />
-    <item
-        android:id="@+id/rate_app"
-        android:title="@string/bsm_rate_app"/>
-    <item
-        android:id="@+id/exit"
-        android:title="@string/bsm_exit" />
+        <item
+            android:id="@+id/lib_used"
+            android:title="@string/bsm_libraries" />
+        <item
+            android:id="@+id/rate_app"
+            android:title="@string/bsm_rate_app" />
+        <item
+            android:id="@+id/exit"
+            android:title="@string/bsm_exit" />
     </group>
 </menu>

@@ -4,6 +4,9 @@
     <string name="actionbar_label">Reminder</string>
     <string name="menu_history">History</string>
 
+    <string name="home_left_side">Left</string>
+    <string name="home_right_side">Right</string>
+
     <!--   Chip Label   -->
     <string name="chip_refresh_label">Refresh Duration</string>
     <string name="chip_delete_lenses">Delete Current Lenses</string>
@@ -11,14 +14,15 @@
     <!--   AddNewLens   -->
     <string name="anl_switch_left">LEFT</string>
     <string name="anl_switch_right">RIGHT</string>
-    <string name="anl_datepicker_desc">Pick the date you started using this pair of lenses</string>
+    <string name="anl_datepicker_desc">Pick the date you started using this lens</string>
     <string name="anl_combo_desc">Choose your lens type</string>
 
     <!--   History Item Row Label   -->
     <string name="hist_left_lens">LEFT</string>
     <string name="hist_right_lens">RIGHT</string>
-    
+
     <!--   BottomSheetMenu   -->
+    <string name="bsm_test_notif">Test Notifications</string>
     <string name="bsm_version">Version</string>
     <string name="bsm_developer">Developer</string>
     <string name="bsm_libraries">Libraries</string>
@@ -26,6 +30,8 @@
     <string name="bsm_exit">Exit</string>
 
     <!--   NotificationAction   -->
+    <string name="notification_title">Lenses have expired!</string>
+    <string name="notification_body">Open app to check it out.</string>
     <string name="not_action_label">Silence</string>
 
     <!--   LIbraryItemRow   -->
