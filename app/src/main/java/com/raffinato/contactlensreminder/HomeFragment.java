@@ -1,14 +1,18 @@
 package com.raffinato.contactlensreminder;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.chip.Chip;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -63,6 +67,11 @@ public class HomeFragment extends Fragment {
                 lensArray[side] == null ? 1 : lensArray[side].getDuration().getTime());
         ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setValue(
                 lensArray[side] == null ? 1 : lensArray[side].getDuration().getTime() - lensArray[side].getRemainingTime().getDays());
+
+        if(lensArray[side] != null && lensArray[side].getRemainingTime().getDays() <= 0) {
+            ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setExpiredColor();
+            ((ImageView) lensLayout.findViewById(R.id.lens_drwbl)).setImageDrawable(getActivity().getDrawable(R.drawable.ic_contact_lens_red));
+        }
     }
 
     @Override

@@ -171,8 +171,8 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
 
     public void setupNotifications(List<Lens> lenses) {
         if (lenses.get(0).getExpDate().isEqual(lenses.get(1).getExpDate())) {
-            //NotificationScheduler.setReminder(this, AlarmReceiver.class, lenses.get(0).getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), 0);
-            NotificationScheduler.setReminder(this, AlarmReceiver.class, new DateTime().getDayOfYear(), new DateTime().plusMinutes(1).getMinuteOfHour(), new DateTime().getHourOfDay(), 0);
+            NotificationScheduler.setReminder(this, AlarmReceiver.class, lenses.get(0).getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), 0);
+            //NotificationScheduler.setReminder(this, AlarmReceiver.class, new DateTime().getDayOfYear(), new DateTime().plusMinutes(1).getMinuteOfHour(), new DateTime().getHourOfDay(), 0);
         } else {
             NotificationScheduler.setReminder(this, AlarmReceiver.class, lenses.get(0).getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), NotificationHelper.LX_LENS_NOT_ID);
             NotificationScheduler.setReminder(this, AlarmReceiver.class, lenses.get(1).getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), NotificationHelper.RX_LENS_NOT_ID);

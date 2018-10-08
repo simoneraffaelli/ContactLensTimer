@@ -160,4 +160,11 @@ public class BarChart extends View {
         this.maxValue = maxVal;
     }
 
+    public void setExpiredColor() {
+        mProgressBarColor = Color.RED;
+        mContainerBarColor = Color.parseColor("#40bf0000");
+
+        mProgressBarPaint.setColor(mProgressBarColor);
+        mContainerBarPaint.setColor(mContainerBarColor);
+    }
 }

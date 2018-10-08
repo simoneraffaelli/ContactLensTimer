@@ -66,7 +66,7 @@ public class NotificationScheduler {
 
         setcalendar.set(Calendar.DAY_OF_YEAR, date.getDayOfYear());
         setcalendar.set(Calendar.HOUR_OF_DAY, date.getHourOfDay());
-        setcalendar.set(Calendar.MINUTE, date.plusMinutes(1).getMinuteOfHour());
+        setcalendar.set(Calendar.MINUTE, date.getMinuteOfHour());
         setcalendar.set(Calendar.SECOND, 0);
 
         cancelReminder(context, cls, 6021996);
