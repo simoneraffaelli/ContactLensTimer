@@ -1,5 +1,6 @@
 package com.raffinato.contactlensreminder.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,9 +32,9 @@ public class DatabaseManager {
 
             cursor = db.rawQuery(query, null);
             while (cursor.moveToNext()) {
-                Lens rxLens = new Lens(Lens.Duration.fromInt(cursor.getInt(cursor.getColumnIndex(LensesInUse.COLUMN_DURATION_RX))),
+                Lens rxLens = new Lens(cursor.getInt(cursor.getColumnIndex(LensesInUse.COLUMN_STATE_RX)) == 1, Lens.Duration.fromInt(cursor.getInt(cursor.getColumnIndex(LensesInUse.COLUMN_DURATION_RX))),
                         DateTime.parse(cursor.getString(cursor.getColumnIndex(LensesInUse.COLUMN_INIT_DATE_RX)), DateTimeFormat.forPattern("dd/MM/yyyy")));
-                Lens lxLens = new Lens(Lens.Duration.fromInt(cursor.getInt(cursor.getColumnIndex(LensesInUse.COLUMN_DURATION_LX))),
+                Lens lxLens = new Lens(cursor.getInt(cursor.getColumnIndex(LensesInUse.COLUMN_STATE_LX)) == 1, Lens.Duration.fromInt(cursor.getInt(cursor.getColumnIndex(LensesInUse.COLUMN_DURATION_LX))),
                         DateTime.parse(cursor.getString(cursor.getColumnIndex(LensesInUse.COLUMN_INIT_DATE_LX)), DateTimeFormat.forPattern("dd/MM/yyyy")));
 
                 l.add(lxLens);
@@ -48,6 +49,14 @@ public class DatabaseManager {
             db.close();
         }
         return l;
+    }
+
+    public void deactivateLenses() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(LensesInUse.COLUMN_STATE_LX, 0);
+        cv.put(LensesInUse.COLUMN_STATE_RX, 0);
+        db.update(LensesInUse.TABLE_NAME,cv, "_id = (SELECT MAX(_id) FROM " + LensesInUse.TABLE_NAME + ")",null);
     }
 
     public ArrayList<Lens> getHistory() {

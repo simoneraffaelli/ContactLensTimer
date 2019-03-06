@@ -1,14 +1,11 @@
 package com.raffinato.contactlensreminder;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.chip.Chip;
 import android.support.v4.app.Fragment;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +35,8 @@ public class HomeFragment extends Fragment {
     public static HomeFragment newInstance(List<Lens> lenses) {
         HomeFragment f = new HomeFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(LXLENSID, lenses.isEmpty() ? null : lenses.get(0));
-        bundle.putParcelable(RXLENSID, lenses.isEmpty() ? null : lenses.get(1));
+        bundle.putParcelable(LXLENSID, lenses.isEmpty() ? null : lenses.get(0).isActive() ? lenses.get(0) : null);
+        bundle.putParcelable(RXLENSID, lenses.isEmpty() ? null : lenses.get(1).isActive() ? lenses.get(1) : null);
         f.setArguments(bundle);
 
         return f;

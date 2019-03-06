@@ -12,13 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.github.badoualy.datepicker.DatePickerTimeline;
 
-import info.hoang8f.android.segmented.SegmentedGroup;
+import org.joda.time.DateTime;
+
+import java.util.Calendar;
+
+import co.ceryle.segmentedbutton.SegmentedButtonGroup;
+
 
 public class AddNewLensFragment extends Fragment implements PullToDismiss.Listener {
 
@@ -53,38 +58,56 @@ public class AddNewLensFragment extends Fragment implements PullToDismiss.Listen
 
 
     private void setupRadioGroupListener(final View view) {
-        SegmentedGroup group = view.findViewById(R.id.segmented2);
-        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        final SegmentedButtonGroup segmentedButtonGroup = view.findViewById(R.id.segmentedcontrols);
+        segmentedButtonGroup.setOnClickedButtonListener(new SegmentedButtonGroup.OnClickedButtonListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int radioBtnId = group.getCheckedRadioButtonId();
-                RadioButton radioBtn = group.findViewById(radioBtnId);
-                int radioBtnChildPos = group.indexOfChild(radioBtn);
-                if (radioBtnChildPos == 0) {
+            public void onClickedButton(int position) {
+                switch(position) {
+                    case 0: view.findViewById(R.id.add_new_left_lens).setVisibility(View.VISIBLE);
+                            view.findViewById(R.id.add_new_right_lens).setVisibility(View.GONE);
+                            break;
+                    case 1: view.findViewById(R.id.add_new_left_lens).setVisibility(View.GONE);
+                            view.findViewById(R.id.add_new_right_lens).setVisibility(View.VISIBLE);
+                            break;
+                    default:
+                        Toast.makeText(getContext(), "An error occurred :(", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        Switch s = view.findViewById(R.id.anl_switch);
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked) {
                     view.findViewById(R.id.add_new_left_lens).setVisibility(View.VISIBLE);
                     view.findViewById(R.id.add_new_right_lens).setVisibility(View.GONE);
+                    segmentedButtonGroup.setEnabled(false);
                 } else {
-                    if (radioBtnChildPos == 1) {
-
-                        view.findViewById(R.id.add_new_left_lens).setVisibility(View.GONE);
-                        view.findViewById(R.id.add_new_right_lens).setVisibility(View.VISIBLE);
-                    } else {
-                        Toast.makeText(getActivity(), "ERROR",
-                                Toast.LENGTH_LONG).show();
-                    }
+                    segmentedButtonGroup.setEnabled(true);
                 }
             }
         });
     }
 
     private void setupAddNewLensView(View view) {
+        DateTime now = DateTime.now();
         DatePickerTimeline datePickerLx = view.findViewById(R.id.datepicker_lx);
         AppCompatSpinner mySpinnerLx = view.findViewById(R.id.spinner_lx);
         DatePickerTimeline datePickerRx = view.findViewById(R.id.datepicker_rx);
         AppCompatSpinner mySpinnerRx = view.findViewById(R.id.spinner_rx);
         datePickerLx.getMonthView().setDefaultColor(getResources().getColor(R.color.almostBlue));
+        datePickerLx.setFirstVisibleDate(now.getYear() - 1, Calendar.JANUARY, 1);
+        datePickerLx.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 1);
+        datePickerLx.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
+        datePickerLx.setFollowScroll(false);
+
         mySpinnerLx.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, Lens.Duration.values()));
         datePickerRx.getMonthView().setDefaultColor(getResources().getColor(R.color.almostBlue));
+        datePickerRx.setFirstVisibleDate(now.getYear() - 1, Calendar.JANUARY, 1);
+        datePickerRx.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 1);
+        datePickerRx.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
+        datePickerRx.setFollowScroll(false);
         mySpinnerRx.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, Lens.Duration.values()));
     }
 

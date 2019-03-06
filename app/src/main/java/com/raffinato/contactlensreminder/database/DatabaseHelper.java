@@ -7,14 +7,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.raffinato.contactlensreminder.LensesInUse;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DB_NAME = "lenstimer.db";
-    public static final String CREATE_TABLE_LENSES = "CREATE TABLE " +
+    public static final String DB_NAME = "lenstimerv2.db";
+    private static final String CREATE_TABLE_LENSES = "CREATE TABLE " +
             LensesInUse.TABLE_NAME + " (" +
             LensesInUse._ID + " INTEGER PRIMARY KEY, " +
             LensesInUse.COLUMN_INIT_DATE_LX + " TEXT, " +
             LensesInUse.COLUMN_DURATION_LX + " INTEGER," +
-            LensesInUse.COLUMN_INIT_DATE_RX + " TEXT, " +
-            LensesInUse.COLUMN_DURATION_RX + " INTEGER)";
+            LensesInUse.COLUMN_STATE_LX + " INTEGER, " +
+            LensesInUse.COLUMN_INIT_DATE_RX +" TEXT, " +
+            LensesInUse.COLUMN_DURATION_RX + " INTEGER,"+
+            LensesInUse.COLUMN_STATE_RX + " INTEGER)";
 
 
     public DatabaseHelper(Context context) {

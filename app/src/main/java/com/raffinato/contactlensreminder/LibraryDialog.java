@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class LibraryDialog extends DialogFragment {
-    private RecyclerView mRecyclerView;
 
     public LibraryDialog() {
     }
@@ -30,7 +29,7 @@ public class LibraryDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //inflate layout with recycler view
         View v = inflater.inflate(R.layout.fragment_library_dialog, container, false);
-        mRecyclerView = v.findViewById(R.id.recycler_view);
+        RecyclerView mRecyclerView = v.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         LibraryDialogAdapter adapter = new LibraryDialogAdapter();

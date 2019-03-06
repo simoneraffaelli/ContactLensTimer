@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 public class BottomSheetModalFragment extends BottomSheetDialogFragment {
 
@@ -66,12 +65,13 @@ public class BottomSheetModalFragment extends BottomSheetDialogFragment {
                     case R.id.exit:
                         getActivity().finishAndRemoveTask();
                         break;
-                    case R.id.test_notification:
+                    /*case R.id.test_notification:
                         DateTime date = new DateTime();
                         date = date.plusMinutes(1).withSecondOfMinute(0);
                         Toast.makeText(getActivity(), "Alarm Scheduled At: " + date.toString(DateTimeFormat.forPattern("dd/MM - hh:mm:ss")), Toast.LENGTH_SHORT).show();
                         NotificationScheduler.testNotifications(getActivity(), AlarmReceiver.class, date);
                         break;
+                        */
                 }
                 return true;
             }

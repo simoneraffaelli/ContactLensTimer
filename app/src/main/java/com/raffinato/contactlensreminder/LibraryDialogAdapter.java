@@ -25,9 +25,9 @@ public class LibraryDialogAdapter extends RecyclerView.Adapter<LibraryDialogAdap
     private final static String DATEPICKER_TIMELINE_AUTHOR = "badoualy";
     private final static String DATEPICKER_TIMELINE_URL = "https://github.com/badoualy/datepicker-timeline";
 
-    private final static String SEGMENTED_CONTROL = "Android Segmented Control";
-    private final static String SEGMENTED_CONTROL_AUTHOR = "Kaopiz";
-    private final static String SEGMENTED_CONTROL_URL = "https://github.com/Kaopiz/android-segmented-control";
+    private final static String SEGMENTED_CONTROL = "SegmentedButton";
+    private final static String SEGMENTED_CONTROL_AUTHOR = "ceryle";
+    private final static String SEGMENTED_CONTROL_URL = "https://github.com/ceryle/SegmentedButton";
     private final List<Library> mDataset;
     private OnLibraryItemClick listener;
     public LibraryDialogAdapter() {
@@ -83,9 +83,9 @@ public class LibraryDialogAdapter extends RecyclerView.Adapter<LibraryDialogAdap
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView title;
-        public final TextView author;
-        public final CardView card;
+        final TextView title;
+        final TextView author;
+        final CardView card;
 
         ViewHolder(final View itemView) {
             super(itemView);
@@ -95,7 +95,7 @@ public class LibraryDialogAdapter extends RecyclerView.Adapter<LibraryDialogAdap
         }
     }
 
-    protected class Library {
+    class Library {
         final String name;
         final String author;
         final String url;

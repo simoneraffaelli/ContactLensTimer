@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.github.badoualy.datepicker.DatePickerTimeline;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
 //        }
     }
 
-    protected void addFragment(final Fragment fragment, boolean back) {
+    private void addFragment(final Fragment fragment, boolean back) {
         FragmentManager manager = getSupportFragmentManager();
         animateTransition(fragment, manager);
         FragmentTransaction transaction = manager.beginTransaction();
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         transaction.commit();
     }
 
-    protected void replaceFragment(Fragment fragment, boolean back) {
+    private void replaceFragment(Fragment fragment, boolean back) {
         FragmentManager manager = getSupportFragmentManager();
         Fragment f = manager.findFragmentById(R.id.fragment_container);
         FragmentTransaction transaction = manager.beginTransaction();
@@ -130,10 +131,14 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
             DatePickerTimeline rxDataPicker = findViewById(R.id.datepicker_rx);
             DateTime lxDate = new DateTime(DateTime.parse(lxDataPicker.getSelectedDay() + "/" + (lxDataPicker.getSelectedMonth() + 1) + "/" + lxDataPicker.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
             Lens.Duration lxDuration = (Lens.Duration) lxSpinner.getSelectedItem();
-            lenses.add(0, new Lens("", lxDuration, lxDate));
-            DateTime rxDate = new DateTime(DateTime.parse(rxDataPicker.getSelectedDay() + "/" + (rxDataPicker.getSelectedMonth() + 1) + "/" + rxDataPicker.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
-            Lens.Duration rxDuration = (Lens.Duration) rxSpinner.getSelectedItem();
-            lenses.add(new Lens("", rxDuration, rxDate));
+            lenses.add(0, new Lens(lxDuration, lxDate));
+            if(!((Switch) findViewById(R.id.anl_switch)).isChecked()) {
+                DateTime rxDate = new DateTime(DateTime.parse(rxDataPicker.getSelectedDay() + "/" + (rxDataPicker.getSelectedMonth() + 1) + "/" + rxDataPicker.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
+                Lens.Duration rxDuration = (Lens.Duration) rxSpinner.getSelectedItem();
+                lenses.add(new Lens(rxDuration, rxDate));
+            } else {
+                lenses.add(new Lens(lxDuration, lxDate));
+            }
             dbManager.addLenses(new LensesInUse(lenses.get(0), lenses.get(1)));
 
             setupNotifications(lenses);
@@ -164,12 +169,15 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         lenses.clear();
         lenses.add(null);
         lenses.add(null);
+        dbManager.deactivateLenses();
         f.updateLenses(lenses);
         getSupportFragmentManager().beginTransaction().detach(f).attach(f).commitNowAllowingStateLoss();
         NotificationScheduler.cancelReminders(this, AlarmReceiver.class);
     }
 
-    public void setupNotifications(List<Lens> lenses) {
+    private void setupNotifications(List<Lens> lenses) {
+        NotificationScheduler.cancelReminders(this,AlarmReceiver.class);
+
         if (lenses.get(0).getExpDate().isEqual(lenses.get(1).getExpDate())) {
             NotificationScheduler.setReminder(this, AlarmReceiver.class, lenses.get(0).getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), 0);
             //NotificationScheduler.setReminder(this, AlarmReceiver.class, new DateTime().getDayOfYear(), new DateTime().plusMinutes(1).getMinuteOfHour(), new DateTime().getHourOfDay(), 0);

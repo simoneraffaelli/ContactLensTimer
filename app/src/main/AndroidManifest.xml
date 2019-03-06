@@ -36,7 +36,8 @@
         </activity>
         <receiver
             android:name="com.raffinato.contactlensreminder.AlarmReceiver"
-            android:enabled="false">
+            android:enabled="false"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />

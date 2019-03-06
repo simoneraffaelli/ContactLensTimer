@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/lens_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ll_rc_bkg"
@@ -36,15 +35,15 @@
     </LinearLayout>
 
     <HorizontalScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/chip_vertical_margin"
-        android:padding="@dimen/chip_group_padding">
+        android:padding="@dimen/chip_group_padding"
+        android:layout_gravity="center">
 
         <android.support.design.chip.ChipGroup
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_height="wrap_content">
 
             <android.support.design.chip.Chip
                 android:id="@+id/chip_refresh"

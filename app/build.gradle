@@ -6,8 +6,8 @@ android {
         applicationId "com.raffinato.contactlensreminder"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.4"
+        versionCode 16
+        versionName "2.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     applicationVariants.all { variant ->
@@ -30,6 +30,7 @@ dependencies {
     implementation 'joda-time:joda-time:2.9.4'
     implementation 'com.github.fatihsokmen:pulltodismiss:1.1'
     implementation 'com.github.badoualy:datepicker-timeline:c6dcd05737'
-    implementation 'info.hoang8f:android-segmented:1.0.6'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.github.ceryle:SegmentedButton:v2.0.2'
+
 }

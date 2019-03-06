@@ -5,12 +5,13 @@
     <string name="menu_history">Storico</string>
     <string name="home_left_side">Sinistra</string>
     <string name="home_right_side">Destra</string>
-    <string name="chip_refresh_label">Aggiorna Durate</string>
-    <string name="chip_delete_lenses">Elimina Lenti In Uso</string>
+    <string name="chip_refresh_label">Riutilizza le Ultime Lenti</string>
+    <string name="chip_delete_lenses">Elimina le Lenti in Uso</string>
     <string name="anl_switch_left">SINISTRA</string>
     <string name="anl_switch_right">DESTRA</string>
-    <string name="anl_datepicker_desc">Scegli la data in cui hai aperto la lente</string>
+    <string name="anl_datepicker_desc">Scegli la data in cui hai messo le lenti</string>
     <string name="anl_combo_desc">Scegli il tipo di lente</string>
+    <string name="anl_switch_txt">Entrambe le lenti hanno la stessa scadenza</string>
     <string name="hist_left_lens">SINISTRA</string>
     <string name="hist_right_lens">DESTRA</string>
     <string name="bsm_test_notif">Notifica di Test</string>

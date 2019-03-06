@@ -14,6 +14,7 @@
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <!-- set the rounded drawable as background to your bottom sheet -->

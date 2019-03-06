@@ -13,7 +13,6 @@ import android.view.View;
 public class BarChart extends View {
 
     private final ValueAnimator barColorAnim = null;
-    private final long animationDuration = 3000L;  //Default time to complete the entire bar
     private final Paint mProgressBarPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint mContainerBarPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -23,9 +22,8 @@ public class BarChart extends View {
     private float mBarHeight,
             mBarWidth,
             mTextMargin;
-    private int mContainerBarColor,
-            mProgressBarColor,
-            mTextColor;
+    private int mContainerBarColor;
+    private int mProgressBarColor;
     private boolean mShowText = true;
 
     public BarChart(Context context, AttributeSet attrs) {
@@ -35,6 +33,7 @@ public class BarChart extends View {
 
     private void init(Context context, AttributeSet attrs) {
         TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.HorizontalProgressBar, 0, 0);
+        int mTextColor;
         try {
             mProgressBarColor = ta.getColor(R.styleable.HorizontalProgressBar_progressBarColor, getResources().getColor(R.color.materialBlue));
             mBarHeight = ta.getDimension(R.styleable.HorizontalProgressBar_BarHeight, 0.0F);
@@ -142,6 +141,8 @@ public class BarChart extends View {
         //animationDuration specifies how long it should take to animate the entire graph, so the
         //actual value to use depends on how much the value needs to change
         int changeInValue = (int) Math.abs(currentValue - previousValue);
+        //Default time to complete the entire bar
+        long animationDuration = 3000L;
         long durationToUse = (long) (animationDuration * ((float) changeInValue / (float) maxValue) * .9);
         barAnim.setDuration(durationToUse);
         barAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

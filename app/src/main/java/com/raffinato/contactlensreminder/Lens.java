@@ -21,20 +21,20 @@ public class Lens implements Parcelable {
         }
     };
     private final DateTime initialDate;
-    private Duration duration;
-    private DateTime expDate;
-    private String name;
+    private final Duration duration;
+    private final DateTime expDate;
+    private final boolean isActive;
 
 
-    public Lens(String name, Duration duration, DateTime date) {
-        this.name = name;
+    public Lens(boolean isActive, Duration duration, DateTime date) {
+        this.isActive = isActive;
         this.duration = duration;
         this.expDate = date.plusDays(duration.getTime());
         this.initialDate = date;
     }
 
     public Lens(Duration duration, DateTime date) {
-        this.name = "";
+        this.isActive = true;
         this.duration = duration;
         this.expDate = date.plusDays(duration.getTime());
         this.initialDate = date;
@@ -43,7 +43,7 @@ public class Lens implements Parcelable {
     Lens(Parcel in) {
         duration = (Duration) in.readValue(Duration.class.getClassLoader());
         expDate = (DateTime) in.readValue(DateTime.class.getClassLoader());
-        name = in.readString();
+        isActive = in.readInt() == 1;
         initialDate = (DateTime) in.readValue(DateTime.class.getClassLoader());
     }
 
@@ -63,11 +63,15 @@ public class Lens implements Parcelable {
         return Days.daysBetween(new DateTime().toDateTime(), this.expDate.toDateTime()).plus(1);
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(duration);
         dest.writeValue(expDate);
-        dest.writeString(name);
+        dest.writeInt(isActive ? 1 : 0);
         dest.writeValue(initialDate);
     }
 

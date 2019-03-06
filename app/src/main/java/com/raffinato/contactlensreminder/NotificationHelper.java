@@ -11,15 +11,13 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
 public class NotificationHelper {
-    public static final String NOTIFICATION_CHANNEL_ID = "10001";
+    private static final String NOTIFICATION_CHANNEL_ID = "10001";
     public static final String ACTION_SILENCE = "com.android.example.SILENCE_NOTIFICATION";
     public static final int RX_LENS_NOT_ID = 321547922;
     public static final int LX_LENS_NOT_ID = 321123242;
     public static final String SILENCE_EXTRA = "silence-extra";
-    final String GROUP_KEY_LENS_TIMER = "com.android.example.LENS_TIMER";
     private final Context mContext;
     private NotificationManager mNotificationManager;
-    private NotificationCompat.Builder mBuilder;
 
     public NotificationHelper(Context context) {
         mContext = context;
@@ -43,7 +41,8 @@ public class NotificationHelper {
         PendingIntent snoozePendingIntent =
                 PendingIntent.getBroadcast(mContext, 0, snoozeIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        mBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID)
+        String GROUP_KEY_LENS_TIMER = "com.android.example.LENS_TIMER";
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_contact_lens)
                 .setContentTitle(title)
                 .setContentText(message)
