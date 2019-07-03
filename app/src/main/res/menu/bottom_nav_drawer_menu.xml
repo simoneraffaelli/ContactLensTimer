@@ -10,7 +10,9 @@
         <item
             android:id="@+id/dev"
             android:title="@string/bsm_developer" />
-
+        <item
+            android:id="@+id/translations"
+            android:title="@string/bsm_transl" />
         <item
             android:id="@+id/lib_used"
             android:title="@string/bsm_libraries" />

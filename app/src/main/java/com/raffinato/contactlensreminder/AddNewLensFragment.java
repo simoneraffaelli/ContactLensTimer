@@ -82,6 +82,7 @@ public class AddNewLensFragment extends Fragment implements PullToDismiss.Listen
                 if(isChecked) {
                     view.findViewById(R.id.add_new_left_lens).setVisibility(View.VISIBLE);
                     view.findViewById(R.id.add_new_right_lens).setVisibility(View.GONE);
+                    segmentedButtonGroup.setPosition(0, true);
                     segmentedButtonGroup.setEnabled(false);
                 } else {
                     segmentedButtonGroup.setEnabled(true);
@@ -101,14 +102,14 @@ public class AddNewLensFragment extends Fragment implements PullToDismiss.Listen
         datePickerLx.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 1);
         datePickerLx.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
         datePickerLx.setFollowScroll(false);
+        mySpinnerLx.setAdapter(ArrayAdapter.createFromResource(getActivity(), R.array.str_arr_spinner, R.layout.support_simple_spinner_dropdown_item));
 
-        mySpinnerLx.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, Lens.Duration.values()));
         datePickerRx.getMonthView().setDefaultColor(getResources().getColor(R.color.almostBlue));
         datePickerRx.setFirstVisibleDate(now.getYear() - 1, Calendar.JANUARY, 1);
         datePickerRx.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 1);
         datePickerRx.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
         datePickerRx.setFollowScroll(false);
-        mySpinnerRx.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, Lens.Duration.values()));
+        mySpinnerRx.setAdapter(ArrayAdapter.createFromResource(getActivity(), R.array.str_arr_spinner, R.layout.support_simple_spinner_dropdown_item));
     }
 
     @Override

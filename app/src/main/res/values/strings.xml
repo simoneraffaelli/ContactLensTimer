@@ -29,6 +29,7 @@
     <string name="bsm_libraries">Libraries</string>
     <string name="bsm_rate_app">Rate App</string>
     <string name="bsm_exit">Exit</string>
+    <string name="bsm_transl">Help With Translations</string>
 
     <!--   NotificationAction   -->
     <string name="notification_title">Lenses have expired!</string>
@@ -37,4 +38,14 @@
 
     <!--   LIbraryItemRow   -->
     <string name="library_item_auth_label">Made By</string>
+
+    <!-- Spinner -->
+    <string-array name="str_arr_spinner">
+        <item>DAILY</item>
+        <item>BIWEEKLY</item>
+        <item>MONTLY</item>
+        <item>BIMONTHLY</item>
+        <item>QUARTERLY</item>
+        <item>ANNUAL</item>
+    </string-array>
 </resources>

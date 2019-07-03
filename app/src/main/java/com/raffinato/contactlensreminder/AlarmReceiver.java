@@ -32,18 +32,20 @@ public class AlarmReceiver extends BroadcastReceiver {
 
                     c = db.rawQuery(query, null);
                     while (c.moveToNext()) {
-                        Lens rxLens = new Lens(Lens.Duration.fromInt(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_DURATION_RX))),
+                        Lens rxLens = new Lens(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_STATE_RX)) == 1, Lens.Duration.fromInt(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_DURATION_RX))),
                                 DateTime.parse(c.getString(c.getColumnIndex(LensesInUse.COLUMN_INIT_DATE_RX)), DateTimeFormat.forPattern("dd/MM/yyyy")));
-                        Lens lxLens = new Lens(Lens.Duration.fromInt(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_DURATION_LX))),
+                        Lens lxLens = new Lens(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_STATE_LX)) == 1, Lens.Duration.fromInt(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_DURATION_LX))),
                                 DateTime.parse(c.getString(c.getColumnIndex(LensesInUse.COLUMN_INIT_DATE_LX)), DateTimeFormat.forPattern("dd/MM/yyyy")));
-                        if(rxLens.isActive() && lxLens.isActive()) {
+                        if(rxLens.isActive() || lxLens.isActive()) {
                             if (rxLens.getExpDate().isEqual(lxLens.getExpDate())) {
-                                NotificationScheduler.setReminder(context, AlarmReceiver.class, lxLens.getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), 0);
+                                if (lxLens.getRemainingTime().getDays() > 0) {
+                                    NotificationScheduler.setReminder(context, AlarmReceiver.class, lxLens.getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), 0);
+                                }
                             } else {
-                                if(lxLens.getRemainingTime().getDays() <= 0)
+                                if(lxLens.isActive() && lxLens.getRemainingTime().getDays() > 0)
                                     NotificationScheduler.setReminder(context, AlarmReceiver.class, lxLens.getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), NotificationHelper.LX_LENS_NOT_ID);
-                                if(rxLens.getRemainingTime().getDays() <= 0)
-                                NotificationScheduler.setReminder(context, AlarmReceiver.class, rxLens.getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), NotificationHelper.RX_LENS_NOT_ID);
+                                if(rxLens.isActive() && rxLens.getRemainingTime().getDays() > 0)
+                                    NotificationScheduler.setReminder(context, AlarmReceiver.class, rxLens.getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), NotificationHelper.RX_LENS_NOT_ID);
                             }
                         }
 

@@ -82,7 +82,7 @@ public class Lens implements Parcelable {
 
     public enum Duration {
 
-        DAILY(1), BIWEEKLY(14), MONTHLY(30), QUARTERLY(120), ANNUAL(365);
+        DAILY(1), BIWEEKLY(14), MONTHLY(30), BIMONTHLY(60), QUARTERLY(120), ANNUAL(365);
 
         private final int t;
 
@@ -98,6 +98,8 @@ public class Lens implements Parcelable {
                     return Duration.BIWEEKLY;
                 case 30:
                     return Duration.MONTHLY;
+                case 60:
+                    return Duration.BIMONTHLY;
                 case 120:
                     return Duration.QUARTERLY;
                 case 365:
@@ -106,6 +108,26 @@ public class Lens implements Parcelable {
                     return null;
             }
         }
+
+        public static Duration fromSpinnerSelection(int i) {
+            switch (i) {
+                case 0:
+                    return Duration.DAILY;
+                case 1:
+                    return Duration.BIWEEKLY;
+                case 2:
+                    return Duration.MONTHLY;
+                case 3:
+                    return Duration.BIMONTHLY;
+                case 4:
+                    return Duration.QUARTERLY;
+                case 5:
+                    return Duration.ANNUAL;
+                default:
+                    return null;
+            }
+        }
+
 
         public int getTime() {
             return this.t;

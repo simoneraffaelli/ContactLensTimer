@@ -49,8 +49,11 @@ public class BottomSheetModalFragment extends BottomSheetDialogFragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
+                    case R.id.translations:
+                        translations();
+                        break;
                     case R.id.dev:
-                        Toast.makeText(getActivity(), "Raffaelli Simone", Toast.LENGTH_SHORT).show();
+                        mySite();
                         break;
                     case R.id.version:
                         Toast.makeText(getActivity(), BuildConfig.VERSION_NAME, Toast.LENGTH_SHORT).show();
@@ -97,6 +100,26 @@ public class BottomSheetModalFragment extends BottomSheetDialogFragment {
             startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(getActivity(), "couldn't launch the market", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void mySite() {
+        Uri uri = Uri.parse("https://www.simoneraffaelli.it");
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getActivity(), "couldn't launch browser", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void translations() {
+        Uri uri = Uri.parse("http://lenses.simoneraffaelli.it/translations/");
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getActivity(), "couldn't launch browser", Toast.LENGTH_LONG).show();
         }
     }
 

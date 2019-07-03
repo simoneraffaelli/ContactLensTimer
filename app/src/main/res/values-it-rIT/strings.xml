@@ -20,8 +20,17 @@
     <string name="bsm_libraries">Librerie</string>
     <string name="bsm_rate_app">Valuta l\'App</string>
     <string name="bsm_exit">Esci</string>
+    <string name="bsm_transl">Auitaci con le Traduzioni</string>
     <string name="notification_title">Le lenti sono scadute!</string>
     <string name="notification_body">Apri l\'app per controllare.</string>
     <string name="not_action_label">Silenzia</string>
     <string name="library_item_auth_label">"Sviluppata Da "</string>
+    <string-array name="str_arr_spinner">
+        <item>GIORNALIERE</item>
+        <item>BISETTIMANALI</item>
+        <item>MENSILI</item>
+        <item>BIMENSILI</item>
+        <item>QUADRIMESTRALI</item>
+        <item>ANNUALI</item>
+    </string-array>
 </resources>

@@ -130,15 +130,16 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
             AppCompatSpinner rxSpinner = findViewById(R.id.spinner_rx);
             DatePickerTimeline rxDataPicker = findViewById(R.id.datepicker_rx);
             DateTime lxDate = new DateTime(DateTime.parse(lxDataPicker.getSelectedDay() + "/" + (lxDataPicker.getSelectedMonth() + 1) + "/" + lxDataPicker.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
-            Lens.Duration lxDuration = (Lens.Duration) lxSpinner.getSelectedItem();
+            Lens.Duration lxDuration = Lens.Duration.fromSpinnerSelection(lxSpinner.getSelectedItemPosition());
             lenses.add(0, new Lens(lxDuration, lxDate));
             if(!((Switch) findViewById(R.id.anl_switch)).isChecked()) {
                 DateTime rxDate = new DateTime(DateTime.parse(rxDataPicker.getSelectedDay() + "/" + (rxDataPicker.getSelectedMonth() + 1) + "/" + rxDataPicker.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
-                Lens.Duration rxDuration = (Lens.Duration) rxSpinner.getSelectedItem();
+                Lens.Duration rxDuration = Lens.Duration.fromSpinnerSelection(rxSpinner.getSelectedItemPosition());
                 lenses.add(new Lens(rxDuration, rxDate));
             } else {
                 lenses.add(new Lens(lxDuration, lxDate));
             }
+            dbManager.deactivateLenses();
             dbManager.addLenses(new LensesInUse(lenses.get(0), lenses.get(1)));
 
             setupNotifications(lenses);
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
     public void onRefreshClick() {
         HomeFragment f = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         lenses.clear();
+        dbManager.deactivateLenses();
         List<Lens> tmp = dbManager.getLenses();
         if (!tmp.isEmpty()) {
             lenses.add(new Lens(tmp.get(0).getDuration(), new DateTime()));
