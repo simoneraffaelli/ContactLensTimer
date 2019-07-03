@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/lens_drwbl"
         android:layout_width="@dimen/lens_icon_dimen"
         android:layout_height="@dimen/lens_icon_dimen"

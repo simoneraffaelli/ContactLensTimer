@@ -113,7 +113,7 @@
                     android:labelFor="@+id/spinner_lx"
                     android:text="@string/anl_combo_desc" />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_lx"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -152,7 +152,7 @@
                     android:labelFor="@+id/spinner_rx"
                     android:text="@string/anl_combo_desc" />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_rx"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
