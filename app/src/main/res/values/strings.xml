@@ -12,11 +12,13 @@
     <string name="chip_delete_lenses">Delete Current Lenses</string>
 
     <!--   AddNewLens   -->
+    <string name="anl_title">Use new lenses</string>
     <string name="anl_switch_left">LEFT</string>
     <string name="anl_switch_right">RIGHT</string>
     <string name="anl_datepicker_desc">Pick the date you started using this lens</string>
     <string name="anl_combo_desc">Choose your lens type</string>
     <string name="anl_switch_txt">Both lenses have same deadline</string>
+    <string name="anl_save">Save</string>
 
     <!--   History Item Row Label   -->
     <string name="hist_left_lens">LEFT</string>

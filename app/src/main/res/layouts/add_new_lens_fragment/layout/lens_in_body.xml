@@ -1,0 +1,40 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_new_lens"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="visible">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/datepicker"
+        android:textColor="@android:color/black"
+        android:text="@string/anl_datepicker_desc"
+        android:layout_marginBottom="4dp"/>
+
+    <com.github.badoualy.datepicker.DatePickerTimeline
+        android:id="@+id/datepicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:mti_bgLblDateSelectedColor="@color/colorAccent"
+        app:mti_lblDateColor="@color/almostBlue"
+        app:mti_ringLblDateSelectedColor="@color/almostBlue"
+        app:mti_tabBeforeSelectionColor="@color/almostBlue"
+        app:mti_tabSelectedColor="@color/colorAccent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/spinner"
+        android:textColor="@android:color/black"
+        android:text="@string/anl_combo_desc"
+        android:layout_marginTop="4dp"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

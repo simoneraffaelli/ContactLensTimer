@@ -1,44 +1,55 @@
 package com.raffinato.contactlensreminder;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
+import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.ImageViewCompat;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
-import android.widget.Switch;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.badoualy.datepicker.DatePickerTimeline;
+import com.raffinato.contactlensreminder.listeners.OnSaveButtonClick;
 
 import org.joda.time.DateTime;
 
 import java.util.Calendar;
 
-import co.ceryle.segmentedbutton.SegmentedButtonGroup;
 
 
-public class AddNewLensFragment extends Fragment implements PullToDismiss.Listener {
+public class AddNewLensFragment extends BottomSheetDialogFragment {
+
+    private boolean switchClicked = false;
+
+    private OnSaveButtonClick saveButtonListener;
 
     public AddNewLensFragment() {
     }
 
     public static AddNewLensFragment newInstance() {
-        AddNewLensFragment fragment = new AddNewLensFragment();
+        AddNewLensFragment f = new AddNewLensFragment();
 
-        return fragment;
+        return f;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme);
     }
 
     @Override
@@ -47,105 +58,162 @@ public class AddNewLensFragment extends Fragment implements PullToDismiss.Listen
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_new_lens, container, false);
 
-        PullToDismiss pdl = view.findViewById(R.id.sliding_layout);
-        pdl.setListener(this);
-
-        setupRadioGroupListener(view);
         setupAddNewLensView(view);
+        configureSwitch(view);
+        configureSaveButton(view);
 
         return view;
     }
 
-
-    private void setupRadioGroupListener(final View view) {
-        final SegmentedButtonGroup segmentedButtonGroup = view.findViewById(R.id.segmentedcontrols);
-        segmentedButtonGroup.setOnClickedButtonListener(new SegmentedButtonGroup.OnClickedButtonListener() {
+    private void configureSaveButton(final View view) {
+        Button b = view.findViewById(R.id.anl_save_btn);
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClickedButton(int position) {
-                switch(position) {
-                    case 0: view.findViewById(R.id.add_new_left_lens).setVisibility(View.VISIBLE);
-                            view.findViewById(R.id.add_new_right_lens).setVisibility(View.GONE);
-                            break;
-                    case 1: view.findViewById(R.id.add_new_left_lens).setVisibility(View.GONE);
-                            view.findViewById(R.id.add_new_right_lens).setVisibility(View.VISIBLE);
-                            break;
-                    default:
-                        Toast.makeText(getContext(), "An error occurred :(", Toast.LENGTH_SHORT).show();
-                }
+            public void onClick(View v) {
+                saveButtonListener.OnSaveButtonClick(switchClicked,view);
+            }
+        });
+    }
+
+
+    private void configureSwitch(final View view) {
+        final LinearLayoutCompat leftLens = view.findViewById(R.id.anl_swc_left_lens);
+        final ViewGroup rightLens = view.findViewById(R.id.anl_swc_right_lens);
+        final ImageView leftImg = leftLens.findViewById(R.id.anl_swc_lens_img);
+        final TextView leftTxt = leftLens.findViewById(R.id.anl_swc_lens_txt);
+        final ImageView rightImg = rightLens.findViewById(R.id.anl_swc_lens_img);
+        final TextView rightTxt = rightLens.findViewById(R.id.anl_swc_lens_txt);
+        final ViewGroup rightBody = view.findViewById(R.id.anl_body_right_lens);
+        final ViewGroup leftBody = view.findViewById(R.id.anl_body_left_lens);
+
+        leftLens.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rightBody.setVisibility(View.GONE);
+                leftBody.setVisibility(View.VISIBLE);
+
+                leftImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_left_cl_blue, null));
+                leftTxt.setTextColor(getResources().getColor(R.color.colorAccent, null));
+                rightImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_right_cl, null));
+                rightTxt.setTextColor(getResources().getColor(R.color.justBlack, null));
+            }
+        });
+        rightLens.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rightBody.setVisibility(View.VISIBLE);
+                leftBody.setVisibility(View.GONE);
+
+                rightImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_right_cl_blue, null));
+                rightTxt.setTextColor(getResources().getColor(R.color.colorAccent, null));
+                leftImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_left_cl, null));
+                leftTxt.setTextColor(getResources().getColor(R.color.justBlack, null));
             }
         });
 
-        Switch s = view.findViewById(R.id.anl_switch);
-        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ImageView swc = view.findViewById(R.id.anl_swc_link);
+        swc.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked) {
-                    view.findViewById(R.id.add_new_left_lens).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.add_new_right_lens).setVisibility(View.GONE);
-                    segmentedButtonGroup.setPosition(0, true);
-                    segmentedButtonGroup.setEnabled(false);
+            public void onClick(View v) {
+                AnimatedVectorDrawableCompat avdcRev = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_anim_rev);
+                AnimatedVectorDrawableCompat avdc = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_anim);
+                if(switchClicked) {
+                    ((ImageView) v).setImageDrawable(avdc);
+                    Animatable anim = ((Animatable)((ImageView)v).getDrawable());
+                    if(anim.isRunning()){
+                        //anim.stop();
+                        return;
+                    } else {
+                      anim.start();
+                    }
+
+                    leftLens.setClickable(true);
+                    rightLens.setClickable(true);
+                    leftBody.setVisibility(View.GONE);
+                    rightBody.setVisibility(View.VISIBLE);
+                    leftImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_left_cl_blue, null));
+                    rightImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_right_cl, null));
+                    leftTxt.setTextColor(getResources().getColor(R.color.colorAccent, null));
+                    rightTxt.setTextColor(getResources().getColor(R.color.justBlack, null));
                 } else {
-                    segmentedButtonGroup.setEnabled(true);
+                    ((ImageView) v).setImageDrawable(avdcRev);
+                    Animatable anim = ((Animatable)((ImageView)v).getDrawable());
+                    if(anim.isRunning()){
+                        //anim.stop();
+                        return;
+                    } else {
+                        anim.start();
+                    }
+
+                    leftLens.setClickable(false);
+                    rightLens.setClickable(false);
+                    leftBody.setVisibility(View.VISIBLE);
+                    rightBody.setVisibility(View.GONE);
+                    leftImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_left_cl_grey, null));
+                    rightImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_right_cl_grey, null));
+                    leftTxt.setTextColor(getResources().getColor(R.color.boringGrey, null));
+                    rightTxt.setTextColor(getResources().getColor(R.color.boringGrey, null));
                 }
+                switchClicked = !switchClicked;
+            }
+        });
+        swc.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(getActivity(), getResources().getString(R.string.anl_switch_txt), Toast.LENGTH_LONG).show();
+                return true;
             }
         });
     }
 
     private void setupAddNewLensView(View view) {
+        View leftLensSwitch = view.findViewById(R.id.anl_swc_left_lens);
+        ViewGroup rightLensSwitch = view.findViewById(R.id.anl_swc_right_lens);
+        ViewGroup leftLensBody = view.findViewById(R.id.anl_body_left_lens);
+        ViewGroup rightLensBody = view.findViewById(R.id.anl_body_right_lens);
+
+        ImageView lensSwcImgLx = leftLensSwitch.findViewById(R.id.anl_swc_lens_img);
+        TextView lensSwcTxtLx = leftLensSwitch.findViewById(R.id.anl_swc_lens_txt);
+        DatePickerTimeline datePickerLx = leftLensBody.findViewById(R.id.datepicker);
+        AppCompatSpinner mySpinnerLx = leftLensBody.findViewById(R.id.spinner);
+
+        ImageView lensSwcImgRx = rightLensSwitch.findViewById(R.id.anl_swc_lens_img);
+        TextView lensSwcTxtRx = rightLensSwitch.findViewById(R.id.anl_swc_lens_txt);
+        DatePickerTimeline datePickerRx = rightLensBody.findViewById(R.id.datepicker);
+        AppCompatSpinner mySpinnerRx = rightLensBody.findViewById(R.id.spinner);
+
+        setupView(true, lensSwcImgLx, lensSwcTxtLx, datePickerLx, mySpinnerLx);
+        setupView(false, lensSwcImgRx, lensSwcTxtRx, datePickerRx, mySpinnerRx);
+    }
+
+    private void setupView(boolean isLeft, ImageView img, TextView txt, DatePickerTimeline date, AppCompatSpinner spin) {
         DateTime now = DateTime.now();
-        DatePickerTimeline datePickerLx = view.findViewById(R.id.datepicker_lx);
-        AppCompatSpinner mySpinnerLx = view.findViewById(R.id.spinner_lx);
-        DatePickerTimeline datePickerRx = view.findViewById(R.id.datepicker_rx);
-        AppCompatSpinner mySpinnerRx = view.findViewById(R.id.spinner_rx);
-        datePickerLx.getMonthView().setDefaultColor(getResources().getColor(R.color.almostBlue));
-        datePickerLx.setFirstVisibleDate(now.getYear() - 1, Calendar.JANUARY, 1);
-        datePickerLx.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 1);
-        datePickerLx.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
-        datePickerLx.setFollowScroll(false);
-        mySpinnerLx.setAdapter(ArrayAdapter.createFromResource(getActivity(), R.array.str_arr_spinner, R.layout.support_simple_spinner_dropdown_item));
 
-        datePickerRx.getMonthView().setDefaultColor(getResources().getColor(R.color.almostBlue));
-        datePickerRx.setFirstVisibleDate(now.getYear() - 1, Calendar.JANUARY, 1);
-        datePickerRx.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 1);
-        datePickerRx.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
-        datePickerRx.setFollowScroll(false);
-        mySpinnerRx.setAdapter(ArrayAdapter.createFromResource(getActivity(), R.array.str_arr_spinner, R.layout.support_simple_spinner_dropdown_item));
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
-        fab.setImageResource(R.drawable.ic_baseline_done_24px);
-    }
-
-    public void onDestroy() {
-        super.onDestroy();
-
-        ((MainActivity) getActivity()).setupBottomAppBar();
-        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
-        fab.setImageResource(R.drawable.ic_baseline_add_24px);
+        img.setImageDrawable(getResources().getDrawable(isLeft ? R.drawable.ic_left_cl_blue : R.drawable.ic_right_cl, null));
+        txt.setText(getResources().getString(isLeft ? R.string.anl_switch_left : R.string.anl_switch_right));
+        if (isLeft) {
+            txt.setTextColor(getResources().getColor(R.color.colorAccent, null));
+        }
+        date.getMonthView().setDefaultColor(getResources().getColor(R.color.almostBlue, null));
+        date.setFirstVisibleDate(now.getYear() - 1, Calendar.JANUARY, 1);
+        date.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 1);
+        date.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
+        date.setFollowScroll(false);
+        spin.setAdapter(ArrayAdapter.createFromResource(getActivity(), R.array.str_arr_spinner, R.layout.support_simple_spinner_dropdown_item));
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof OnSaveButtonClick) {
+            saveButtonListener = (OnSaveButtonClick) context;
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        saveButtonListener = null;
     }
 
-    @Override
-    public void onDismissed() {
-        ((MainActivity) getActivity()).dismissFragment();
-    }
-
-    @Override
-    public boolean onShouldInterceptTouchEvent() {
-        return false;
-    }
 }

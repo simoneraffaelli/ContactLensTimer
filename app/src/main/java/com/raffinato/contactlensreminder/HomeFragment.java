@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.chip.Chip;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.raffinato.contactlensreminder.listeners.OnChipClick;
 
 import org.joda.time.format.DateTimeFormat;
 
+import java.io.Console;
 import java.util.List;
 
 public class HomeFragment extends Fragment {

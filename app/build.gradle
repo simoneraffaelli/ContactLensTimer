@@ -3,12 +3,13 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.raffinato.contactlensreminder"
+        applicationId "com.raffinato.contactlensreminderb"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 19
-        versionName "2.1.0"
+        versionCode 20
+        versionName "3.0.0B"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     applicationVariants.all { variant ->
         variant.resValue "string", "versionName", variant.versionName
@@ -17,6 +18,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/history_fragment',
+                            'src/main/res/layouts/home_fragment',
+                            'src/main/res/layouts/add_new_lens_fragment',
+                            'src/main/res/layouts/setting_bs_fragment',
+                            'src/main/res/layouts',
+                            'src/main/res'
+                    ]
         }
     }
 }

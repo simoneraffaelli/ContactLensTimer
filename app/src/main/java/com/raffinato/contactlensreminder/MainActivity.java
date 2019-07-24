@@ -4,24 +4,28 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
+import com.github.badoualy.datepicker.DatePickerTimeline;
 import com.google.android.material.bottomappbar.BottomAppBar;
+
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.transition.Slide;
 import androidx.transition.Transition;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatSpinner;
+
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Switch;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.github.badoualy.datepicker.DatePickerTimeline;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.raffinato.contactlensreminder.database.DatabaseManager;
 import com.raffinato.contactlensreminder.listeners.OnAppBarButtonClick;
 import com.raffinato.contactlensreminder.listeners.OnChipClick;
-import com.raffinato.contactlensreminder.listeners.OnFabClick;
+import com.raffinato.contactlensreminder.listeners.OnSaveButtonClick;
 import com.raffinato.contactlensreminder.listeners.PullToFragmentDismiss;
 
 import org.joda.time.DateTime;
@@ -30,7 +34,7 @@ import org.joda.time.format.DateTimeFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnAppBarButtonClick, OnFabClick, PullToFragmentDismiss, OnChipClick, LibraryDialogAdapter.OnLibraryItemClick {
+public class MainActivity extends AppCompatActivity implements OnAppBarButtonClick, PullToFragmentDismiss, OnChipClick, LibraryDialogAdapter.OnLibraryItemClick, OnSaveButtonClick {
 
     private List<Lens> lenses;
     private DatabaseManager dbManager;
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         FragmentManager manager = getSupportFragmentManager();
         Fragment f = manager.findFragmentById(R.id.fragment_container);
         FragmentTransaction transaction = manager.beginTransaction();
-        animateTransition(fragment, manager);
+        //animateTransition(fragment, manager);
         transaction.replace(R.id.fragment_container, fragment, fragment.getClass().getSimpleName());
         if (back) {
             transaction.addToBackStack(fragment.getClass().getSimpleName());
@@ -117,35 +121,11 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         FragmentManager manager = getSupportFragmentManager();
         Fragment fragment = manager.findFragmentById(R.id.fragment_container);
         if (fragment instanceof HomeFragment) {
-            Fragment f = AddNewLensFragment.newInstance();
-            this.addFragment(f, true);
+            AddNewLensFragment f = AddNewLensFragment.newInstance();
+            f.show(manager, "BS_ANL");
         }
         if (fragment instanceof HistoryFragment) {
             manager.popBackStackImmediate();
-        }
-        if (fragment instanceof AddNewLensFragment) {
-            lenses.clear();
-            AppCompatSpinner lxSpinner = findViewById(R.id.spinner_lx);
-            DatePickerTimeline lxDataPicker = findViewById(R.id.datepicker_lx);
-            AppCompatSpinner rxSpinner = findViewById(R.id.spinner_rx);
-            DatePickerTimeline rxDataPicker = findViewById(R.id.datepicker_rx);
-            DateTime lxDate = new DateTime(DateTime.parse(lxDataPicker.getSelectedDay() + "/" + (lxDataPicker.getSelectedMonth() + 1) + "/" + lxDataPicker.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
-            Lens.Duration lxDuration = Lens.Duration.fromSpinnerSelection(lxSpinner.getSelectedItemPosition());
-            lenses.add(0, new Lens(lxDuration, lxDate));
-            if(!((Switch) findViewById(R.id.anl_switch)).isChecked()) {
-                DateTime rxDate = new DateTime(DateTime.parse(rxDataPicker.getSelectedDay() + "/" + (rxDataPicker.getSelectedMonth() + 1) + "/" + rxDataPicker.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
-                Lens.Duration rxDuration = Lens.Duration.fromSpinnerSelection(rxSpinner.getSelectedItemPosition());
-                lenses.add(new Lens(rxDuration, rxDate));
-            } else {
-                lenses.add(new Lens(lxDuration, lxDate));
-            }
-            dbManager.deactivateLenses();
-            dbManager.addLenses(new LensesInUse(lenses.get(0), lenses.get(1)));
-
-            setupNotifications(lenses);
-
-            manager.popBackStackImmediate();
-            replaceFragment(HomeFragment.newInstance(lenses), false);
         }
     }
 
@@ -232,5 +212,39 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, "couldn't launch the browser", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void OnSaveButtonClick(boolean switchClicked, View view) {
+        lenses.clear();
+
+        View body = view.findViewById(R.id.anl_body);
+        View leftLensBody = body.findViewById(R.id.anl_body_left_lens);
+        View rightLensBody = body.findViewById(R.id.anl_body_right_lens);
+
+        DatePickerTimeline datePickerLx = leftLensBody.findViewById(R.id.datepicker);
+        AppCompatSpinner mySpinnerLx = leftLensBody.findViewById(R.id.spinner);
+
+        DatePickerTimeline datePickerRx = rightLensBody.findViewById(R.id.datepicker);
+        AppCompatSpinner mySpinnerRx = rightLensBody.findViewById(R.id.spinner);
+
+        DateTime lxDate = new DateTime(DateTime.parse(datePickerLx.getSelectedDay() + "/" + (datePickerLx.getSelectedMonth() + 1) + "/" + datePickerLx.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
+        Lens.Duration lxDuration = Lens.Duration.fromSpinnerSelection(mySpinnerLx.getSelectedItemPosition());
+        lenses.add(0, new Lens(lxDuration, lxDate));
+        if(switchClicked) {
+            lenses.add(new Lens(lxDuration, lxDate));
+        } else {
+            DateTime rxDate = new DateTime(DateTime.parse(datePickerRx.getSelectedDay() + "/" + (datePickerRx.getSelectedMonth() + 1) + "/" + datePickerRx.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
+            Lens.Duration rxDuration = Lens.Duration.fromSpinnerSelection(mySpinnerRx.getSelectedItemPosition());
+            lenses.add(new Lens(rxDuration, rxDate));
+        }
+        dbManager.deactivateLenses();
+        dbManager.addLenses(new LensesInUse(lenses.get(0), lenses.get(1)));
+
+        setupNotifications(lenses);
+
+        AddNewLensFragment f = ((AddNewLensFragment)getSupportFragmentManager().findFragmentByTag("BS_ANL"));
+        f.dismiss();
+        replaceFragment(HomeFragment.newInstance(lenses), false);
     }
 }

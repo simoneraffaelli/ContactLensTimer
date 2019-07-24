@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="8dp">
+    <include
+        android:id="@+id/anl_swc_left_lens"
+        layout="@layout/lens_in_switch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".33" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/anl_swc_link"
+        android:layout_width="0dp"
+        android:layout_weight=".24"
+        android:layout_height="28dp"
+        app:srcCompat="@drawable/avd_anim"
+        android:layout_gravity="center_vertical"
+        />
+    <include
+        android:id="@+id/anl_swc_right_lens"
+        layout="@layout/lens_in_switch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".33" />
+</androidx.appcompat.widget.LinearLayoutCompat>
