@@ -6,15 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="android:statusBarColor">@android:color/white</item>
         <item name="android:fontFamily">@font/nunito</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="actionBarStyle">@style/MyActionBar</item>
     </style>
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="background">@color/colorAccent</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="background">@android:color/white</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
     <!-- set the rounded drawable as background to your bottom sheet -->

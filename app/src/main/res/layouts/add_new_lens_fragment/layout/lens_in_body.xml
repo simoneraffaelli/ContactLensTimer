@@ -21,7 +21,7 @@
         android:layout_marginBottom="4dp"
         app:mti_bgLblDateSelectedColor="@color/colorAccent"
         app:mti_lblDateColor="@color/almostBlue"
-        app:mti_ringLblDateSelectedColor="@color/almostBlue"
+        app:mti_ringLblDateSelectedColor="@android:color/transparent"
         app:mti_tabBeforeSelectionColor="@color/almostBlue"
         app:mti_tabSelectedColor="@color/colorAccent"/>
 

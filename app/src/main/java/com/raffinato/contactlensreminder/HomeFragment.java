@@ -1,16 +1,26 @@
 package com.raffinato.contactlensreminder;
 
 import android.content.Context;
+import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.chip.Chip;
 import androidx.fragment.app.Fragment;
+import androidx.transition.AutoTransition;
+import androidx.transition.ChangeBounds;
+import androidx.transition.ChangeClipBounds;
+import androidx.transition.Fade;
+import androidx.transition.Slide;
+import androidx.transition.TransitionManager;
+import androidx.transition.TransitionSet;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,23 +67,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void setUpLensDesc(View lensLayout, int side) {
-        ((TextView) lensLayout.findViewById(R.id.lens_side)).setText(side == LEFTLENS ? getResources().getString(R.string.home_left_side) : getResources().getString(R.string.home_right_side));
-        ((TextView) lensLayout.findViewById(R.id.lens_countdown)).setText(
-                lensArray[side] == null ? "--" : String.valueOf(lensArray[side].getRemainingTime().getDays() > 0 ? lensArray[side].getRemainingTime().getDays() : 0));
-        ((TextView) lensLayout.findViewById(R.id.lens_deadline)).setText(
-                lensArray[side] == null ? "----" : lensArray[side].getExpDate().toString(DateTimeFormat.forPattern("dd/MM/yyyy")));
-        ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setMaxValue(
-                lensArray[side] == null ? 1 : lensArray[side].getDuration().getTime());
-        ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setValue(
-                lensArray[side] == null ? 1 : lensArray[side].getDuration().getTime() - lensArray[side].getRemainingTime().getDays());
-
-        if(lensArray[side] != null && lensArray[side].getRemainingTime().getDays() <= 0) {
-            ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setExpiredColor();
-            ((ImageView) lensLayout.findViewById(R.id.lens_drwbl)).setImageDrawable(getActivity().getDrawable(R.drawable.ic_contact_lens_red));
-        }
-    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -103,6 +96,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        setupLensCaseTracker(view);
+
         return view;
     }
 
@@ -122,6 +117,81 @@ public class HomeFragment extends Fragment {
         super.onDetach();
         chipListener = null;
     }
+
+
+    private void setUpLensDesc(View lensLayout, int side) {
+        Lens lens = lensArray[side];
+
+        ((TextView) lensLayout.findViewById(R.id.lens_side)).setText(side == LEFTLENS ? getResources().getString(R.string.home_left_side) : getResources().getString(R.string.home_right_side));
+        ((TextView) lensLayout.findViewById(R.id.lens_countdown)).setText(
+                lens == null ? "--" : String.valueOf(lens.getRemainingTime().getDays() > 0 ? lens.getRemainingTime().getDays() : 0));
+        ((TextView) lensLayout.findViewById(R.id.lens_deadline)).setText(
+                lens == null ? "----" : lens.getExpDate().toString(DateTimeFormat.forPattern("dd/MM/yyyy")));
+        ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setMaxValue(
+                lens == null ? 1 : lens.getDuration().getTime());
+        ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setValue(
+                lens == null ? 1 : lens.getDuration().getTime() - lens.getRemainingTime().getDays());
+
+        if(lens != null && lensArray[side].getRemainingTime().getDays() <= 0) {
+            ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setExpiredColor();
+            ((ImageView) lensLayout.findViewById(R.id.lens_drwbl)).setImageDrawable(getActivity().getDrawable(R.drawable.ic_contact_lens_red));
+        }
+    }
+
+    private void setupLensCaseTracker(View view) {
+        setupLensCaseView(view);
+
+    }
+
+    private void setupLensCaseView(View view) {
+        final ImageView img = view.findViewById(R.id.hf_expand);
+        final LinearLayout caseContainer = view.findViewById(R.id.hf_case);
+        final LinearLayout lensContainer = view.findViewById(R.id.hf_hcontainer);
+        final LinearLayout fragContainer = view.findViewById(R.id.hf_vcontainer);
+        final AnimatedVectorDrawableCompat avdc = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_exp_coll);
+        final AnimatedVectorDrawableCompat avdcRev = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_coll_exp);
+        final TransitionSet tSet = new TransitionSet()
+                .addTransition(new ChangeBounds()
+                        .addTarget(lensContainer)
+                        .setInterpolator(new AccelerateDecelerateInterpolator())
+                        .setDuration(300))
+                .addTransition(new Fade()
+                        .addTarget(caseContainer)
+                        .setInterpolator(new AccelerateDecelerateInterpolator())
+                        .setDuration(350))
+                .addTransition(new AutoTransition()
+                        .addTarget(R.id.chip_container)
+                        .addTarget(R.id.hf_expand)
+                        .setInterpolator(new AccelerateDecelerateInterpolator())
+                        .setDuration(200));
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(caseContainer.getVisibility() == View.GONE) {
+                    img.setImageDrawable(avdc);
+                    Animatable anim = ((Animatable)((ImageView)v).getDrawable());
+                    if(!anim.isRunning()){
+                        anim.start();
+
+                        TransitionManager.beginDelayedTransition(fragContainer, tSet);
+                        caseContainer.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    img.setImageDrawable(avdcRev);
+                    Animatable anim = ((Animatable)((ImageView)v).getDrawable());
+                    if(!anim.isRunning()){
+                        anim.start();
+
+                        TransitionManager.beginDelayedTransition(fragContainer, tSet);
+                        caseContainer.setVisibility(View.GONE);
+                    }
+
+                }
+
+            }
+        });
+    }
+
 
     public void updateLenses(List<Lens> list) {
         lensArray[0] = list.get(0);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Promemoria per Lenti</string>
-    <string name="actionbar_label">Promemoria</string>
+    <string name="actionbar_label">Lensminder</string>
     <string name="menu_history">Storico</string>
     <string name="home_left_side">Sinistra</string>
     <string name="home_right_side">Destra</string>

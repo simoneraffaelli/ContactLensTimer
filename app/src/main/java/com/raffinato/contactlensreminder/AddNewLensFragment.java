@@ -112,11 +112,11 @@ public class AddNewLensFragment extends BottomSheetDialogFragment {
         });
 
         ImageView swc = view.findViewById(R.id.anl_swc_link);
+        final AnimatedVectorDrawableCompat avdcRev = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_anim_rev);
+        final AnimatedVectorDrawableCompat avdc = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_anim);
         swc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnimatedVectorDrawableCompat avdcRev = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_anim_rev);
-                AnimatedVectorDrawableCompat avdc = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_anim);
                 if(switchClicked) {
                     ((ImageView) v).setImageDrawable(avdc);
                     Animatable anim = ((Animatable)((ImageView)v).getDrawable());
@@ -129,8 +129,8 @@ public class AddNewLensFragment extends BottomSheetDialogFragment {
 
                     leftLens.setClickable(true);
                     rightLens.setClickable(true);
-                    leftBody.setVisibility(View.GONE);
-                    rightBody.setVisibility(View.VISIBLE);
+                    leftBody.setVisibility(View.VISIBLE);
+                    rightBody.setVisibility(View.GONE);
                     leftImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_left_cl_blue, null));
                     rightImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_right_cl, null));
                     leftTxt.setTextColor(getResources().getColor(R.color.colorAccent, null));

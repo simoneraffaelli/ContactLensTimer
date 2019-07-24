@@ -4,42 +4,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/almostBlue"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:id="@+id/hf_vcontainer">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:background="@drawable/ll_rc_bkg"
-        android:orientation="horizontal">
-
-        <include
-            android:id="@+id/left_lens"
-            layout="@layout/lens_layout"
-            android:layout_width="0dp"
+        android:id="@+id/hf_hcontainer">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:orientation="horizontal">
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/divider_horizontal_margin"
-            android:layout_marginTop="@dimen/divider_horizontal_margin"
-            android:background="#30000000" />
+            <include
+                android:id="@+id/left_lens"
+                layout="@layout/lens_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
-        <include
-            android:id="@+id/right_lens"
-            layout="@layout/lens_layout"
-            android:layout_width="0dp"
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/divider_horizontal_margin"
+                android:layout_marginTop="@dimen/divider_horizontal_margin"
+                android:background="#30000000" />
+
+            <include
+                android:id="@+id/right_lens"
+                layout="@layout/lens_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hf_case"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_contact_lens_case"
+                android:layout_margin="4dp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your lenses will last foranother XX days."
+                    android:textColor="@android:color/black"
+                    android:padding="2dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="You have exactly XX pair of lenses left."
+                    android:textColor="@android:color/black"
+                    android:padding="2dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/hf_expand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avd_exp_coll"
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 
     <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/chip_vertical_margin"
+        android:layout_marginBottom="@dimen/chip_vertical_margin"
         android:padding="@dimen/chip_group_padding"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/chip_container">
 
         <com.google.android.material.chip.ChipGroup
             android:layout_width="wrap_content"
@@ -70,4 +119,44 @@
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rc_bkg"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hf_ntf_title"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:text="Notifications"
+            android:padding="8dp"
+            android:layout_margin="4dp"
+            android:layout_marginBottom="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_notifications_lens"
+                android:layout_margin="4dp"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Notifications = Relax"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/almostBlue"
+                android:padding="8dp"
+                android:layout_margin="4dp"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
