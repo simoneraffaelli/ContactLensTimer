@@ -17,7 +17,7 @@
         android:layout_width="0dp"
         android:layout_weight=".24"
         android:layout_height="28dp"
-        app:srcCompat="@drawable/avd_anim"
+        app:srcCompat="@drawable/avd_anim_rev"
         android:layout_gravity="center_vertical"
         />
     <include

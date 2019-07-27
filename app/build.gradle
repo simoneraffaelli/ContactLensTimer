@@ -28,6 +28,7 @@ android {
                             'src/main/res/layouts/home_fragment',
                             'src/main/res/layouts/add_new_lens_fragment',
                             'src/main/res/layouts/setting_bs_fragment',
+                            'src/main/res/layouts/add_lenses_in_case_fragment',
                             'src/main/res/layouts',
                             'src/main/res'
                     ]

@@ -2,6 +2,7 @@ package com.raffinato.contactlensreminder;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -18,12 +19,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.raffinato.contactlensreminder.database.DatabaseManager;
 import com.raffinato.contactlensreminder.listeners.OnAppBarButtonClick;
+import com.raffinato.contactlensreminder.listeners.OnCaseButtonsClick;
+import com.raffinato.contactlensreminder.listeners.OnCaseClick;
 import com.raffinato.contactlensreminder.listeners.OnChipClick;
 import com.raffinato.contactlensreminder.listeners.OnSaveButtonClick;
 import com.raffinato.contactlensreminder.listeners.PullToFragmentDismiss;
@@ -34,10 +35,13 @@ import org.joda.time.format.DateTimeFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnAppBarButtonClick, PullToFragmentDismiss, OnChipClick, LibraryDialogAdapter.OnLibraryItemClick, OnSaveButtonClick {
+public class MainActivity extends AppCompatActivity implements OnAppBarButtonClick, PullToFragmentDismiss, OnChipClick, LibraryDialogAdapter.OnLibraryItemClick, OnSaveButtonClick, OnCaseClick, OnCaseButtonsClick {
 
     private List<Lens> lenses;
     private DatabaseManager dbManager;
+
+    public static final String SP_LENSESINCASE = "splensesincase";
+    public static final String SP_LENSESINCASE_K1 = "lensesremaining";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
 
         this.getSupportActionBar().setDisplayShowCustomEnabled(true);
         this.getSupportActionBar().setCustomView(LayoutInflater.from(this).inflate(R.layout.actionbar_custom, null));
+        this.getSupportActionBar().setElevation(0);
 
         if (savedInstanceState == null) {
             lenses = dbManager.getLenses();
@@ -123,9 +128,6 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         if (fragment instanceof HomeFragment) {
             AddNewLensFragment f = AddNewLensFragment.newInstance();
             f.show(manager, "BS_ANL");
-        }
-        if (fragment instanceof HistoryFragment) {
-            manager.popBackStackImmediate();
         }
     }
 
@@ -244,6 +246,24 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         setupNotifications(lenses);
 
         AddNewLensFragment f = ((AddNewLensFragment)getSupportFragmentManager().findFragmentByTag("BS_ANL"));
+        f.dismiss();
+        replaceFragment(HomeFragment.newInstance(lenses), false);
+    }
+
+    @Override
+    public void onClick(int lensesRemianing) {
+        FragmentManager manager = getSupportFragmentManager();
+        AddLensesInCaseFragment f = AddLensesInCaseFragment.newInstance(lensesRemianing);
+        f.show(manager, "BS_HF_CASE");
+    }
+
+    @Override
+    public void onSaveClick(String s) {
+        SharedPreferences.Editor editor = getSharedPreferences(SP_LENSESINCASE, MODE_PRIVATE).edit();
+        editor.putInt(SP_LENSESINCASE_K1, Integer.parseInt(s));
+        editor.apply();
+
+        AddLensesInCaseFragment f = ((AddLensesInCaseFragment)getSupportFragmentManager().findFragmentByTag("BS_HF_CASE"));
         f.dismiss();
         replaceFragment(HomeFragment.newInstance(lenses), false);
     }

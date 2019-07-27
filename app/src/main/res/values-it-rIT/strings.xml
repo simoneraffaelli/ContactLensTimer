@@ -5,8 +5,11 @@
     <string name="menu_history">Storico</string>
     <string name="home_left_side">Sinistra</string>
     <string name="home_right_side">Destra</string>
+    <string name="hf_case_lenses_left">Ti rimangono esattamente @1 lenti</string>
+    <string name="hf_case_lenses_time_left">Dureranno ancora @1 giorni </string>
     <string name="chip_refresh_label">Riutilizza le Ultime Lenti</string>
     <string name="chip_delete_lenses">Elimina le Lenti in Uso</string>
+    <string name="hf_case_title">Lenti Rimanenti</string>
     <string name="anl_title">Usa lenti nuove</string>
     <string name="anl_switch_left">SINISTRA</string>
     <string name="anl_switch_right">DESTRA</string>

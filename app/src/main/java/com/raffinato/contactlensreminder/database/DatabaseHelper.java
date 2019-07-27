@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.raffinato.contactlensreminder.LensesCase;
 import com.raffinato.contactlensreminder.LensesInUse;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -17,6 +18,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             LensesInUse.COLUMN_INIT_DATE_RX +" TEXT, " +
             LensesInUse.COLUMN_DURATION_RX + " INTEGER,"+
             LensesInUse.COLUMN_STATE_RX + " INTEGER)";
+    private static final String CREATE_TABLE_CASE = "CREATE TABLE " +
+            LensesCase.TABLE_NAME + " (" +
+            LensesCase._ID + " INTEGER PRIMARY KEY, " +
+            LensesCase.COLUMN_LENSES_REMAINING + " INTEGER, " +
+            LensesCase.COLUMN_LENSES_TYPE + " INTEGER," +
+            LensesCase.COLUMN_STATE + " INTEGER)";
 
 
     public DatabaseHelper(Context context) {

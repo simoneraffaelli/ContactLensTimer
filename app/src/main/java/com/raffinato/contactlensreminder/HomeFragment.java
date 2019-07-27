@@ -1,6 +1,7 @@
 package com.raffinato.contactlensreminder;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -25,12 +26,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.raffinato.contactlensreminder.listeners.OnCaseClick;
 import com.raffinato.contactlensreminder.listeners.OnChipClick;
 
 import org.joda.time.format.DateTimeFormat;
 
 import java.io.Console;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class HomeFragment extends Fragment {
 
@@ -40,7 +44,9 @@ public class HomeFragment extends Fragment {
     private static final int LEFTLENS = 0;
     private static final int RIGHTLENS = 1;
     private final Lens[] lensArray = {null, null};
+
     private OnChipClick chipListener;
+    private OnCaseClick onCaseCickListener;
 
     public HomeFragment() {
     }
@@ -109,6 +115,11 @@ public class HomeFragment extends Fragment {
         } else {
             //Mettere un log
         }
+        if (context instanceof OnCaseClick) {
+            onCaseCickListener = (OnCaseClick) context;
+        } else {
+            //Mettere un log
+        }
 
     }
 
@@ -116,6 +127,7 @@ public class HomeFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         chipListener = null;
+        onCaseCickListener = null;
     }
 
 
@@ -132,7 +144,7 @@ public class HomeFragment extends Fragment {
         ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setValue(
                 lens == null ? 1 : lens.getDuration().getTime() - lens.getRemainingTime().getDays());
 
-        if(lens != null && lensArray[side].getRemainingTime().getDays() <= 0) {
+        if (lens != null && lensArray[side].getRemainingTime().getDays() <= 0) {
             ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setExpiredColor();
             ((ImageView) lensLayout.findViewById(R.id.lens_drwbl)).setImageDrawable(getActivity().getDrawable(R.drawable.ic_contact_lens_red));
         }
@@ -148,6 +160,7 @@ public class HomeFragment extends Fragment {
         final LinearLayout caseContainer = view.findViewById(R.id.hf_case);
         final LinearLayout lensContainer = view.findViewById(R.id.hf_hcontainer);
         final LinearLayout fragContainer = view.findViewById(R.id.hf_vcontainer);
+        final ImageView caseImg = view.findViewById(R.id.hf_case_img);
         final AnimatedVectorDrawableCompat avdc = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_exp_coll);
         final AnimatedVectorDrawableCompat avdcRev = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_coll_exp);
         final TransitionSet tSet = new TransitionSet()
@@ -162,15 +175,16 @@ public class HomeFragment extends Fragment {
                 .addTransition(new AutoTransition()
                         .addTarget(R.id.chip_container)
                         .addTarget(R.id.hf_expand)
+                        .addTarget(R.id.hf_ntf_container)
                         .setInterpolator(new AccelerateDecelerateInterpolator())
                         .setDuration(200));
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(caseContainer.getVisibility() == View.GONE) {
+                if (caseContainer.getVisibility() == View.GONE) {
                     img.setImageDrawable(avdc);
-                    Animatable anim = ((Animatable)((ImageView)v).getDrawable());
-                    if(!anim.isRunning()){
+                    Animatable anim = ((Animatable) ((ImageView) v).getDrawable());
+                    if (!anim.isRunning()) {
                         anim.start();
 
                         TransitionManager.beginDelayedTransition(fragContainer, tSet);
@@ -178,20 +192,31 @@ public class HomeFragment extends Fragment {
                     }
                 } else {
                     img.setImageDrawable(avdcRev);
-                    Animatable anim = ((Animatable)((ImageView)v).getDrawable());
-                    if(!anim.isRunning()){
+                    Animatable anim = ((Animatable) ((ImageView) v).getDrawable());
+                    if (!anim.isRunning()) {
                         anim.start();
 
                         TransitionManager.beginDelayedTransition(fragContainer, tSet);
                         caseContainer.setVisibility(View.GONE);
                     }
-
                 }
 
             }
         });
-    }
+        SharedPreferences pref = getContext().getSharedPreferences(MainActivity.SP_LENSESINCASE, MODE_PRIVATE);
+        final int lensesRemianing = pref.getInt(MainActivity.SP_LENSESINCASE_K1, 0);
+        TextView tv1 = view.findViewById(R.id.hf_case_lenses_left);
+        TextView tv2 = view.findViewById(R.id.hf_case_lenses_time_left);
+        tv1.setText(getResources().getString(R.string.hf_case_lenses_left).replace("@1", String.valueOf(lensesRemianing)));
+        tv2.setText(getResources().getString(R.string.hf_case_lenses_time_left).replace("@1", String.valueOf(lensesRemianing)));
+        caseImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCaseCickListener.onClick(lensesRemianing);
+            }
+        });
 
+    }
 
     public void updateLenses(List<Lens> list) {
         lensArray[0] = list.get(0);

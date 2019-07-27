@@ -7,9 +7,16 @@
     <string name="home_left_side">Left</string>
     <string name="home_right_side">Right</string>
 
+    <!-- Case Txt -->
+    <string name="hf_case_lenses_left">You have exactly @1 lenses left</string>
+    <string name="hf_case_lenses_time_left">That will last @1 day</string>
+
     <!--   Chip Label   -->
     <string name="chip_refresh_label">Reuse Last Lenses</string>
     <string name="chip_delete_lenses">Delete Current Lenses</string>
+
+    <!-- AddLensesInCaseBS -->
+    <string name="hf_case_title">Lenses Remaining</string>
 
     <!--   AddNewLens   -->
     <string name="anl_title">Use new lenses</string>

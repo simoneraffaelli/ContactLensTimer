@@ -88,9 +88,9 @@ public class DatabaseManager {
         return l;
     }
 
-    public boolean addLenses(LensesInUse lensCouple) {
+    public void addLenses(LensesInUse lensCouple) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long row = db.insert(LensesInUse.TABLE_NAME, null, lensCouple.getContentValues());
-        return row > 0;
+        //return row > 0;
     }
 }

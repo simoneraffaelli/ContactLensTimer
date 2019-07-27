@@ -24,13 +24,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/divider_horizontal_margin"
-                android:layout_marginTop="@dimen/divider_horizontal_margin"
-                android:background="#30000000" />
-
             <include
                 android:id="@+id/right_lens"
                 layout="@layout/lens_layout"
@@ -46,6 +39,7 @@
             android:orientation="horizontal"
             android:visibility="gone">
             <ImageView
+                android:id="@+id/hf_case_img"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".2"
@@ -60,15 +54,15 @@
                 android:orientation="vertical"
                 android:layout_margin="4dp">
                 <TextView
+                    android:id="@+id/hf_case_lenses_left"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Your lenses will last foranother XX days."
                     android:textColor="@android:color/black"
                     android:padding="2dp"/>
                 <TextView
+                    android:id="@+id/hf_case_lenses_time_left"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="You have exactly XX pair of lenses left."
                     android:textColor="@android:color/black"
                     android:padding="2dp"/>
             </LinearLayout>
@@ -123,7 +117,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rc_bkg"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/hf_ntf_container">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
