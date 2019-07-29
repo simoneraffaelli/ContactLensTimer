@@ -11,25 +11,27 @@ To report an issue send ma an email or ope a new issue in the "Issues" section h
 I'll add screenshot as soon as I finish v3 upgrade
 
 # Credits
-## Libraries
+### Libraries
 * <b>Joda Time</b> - https://github.com/JodaOrg/joda-time
 * <b>DatePicker Timeline</b> - https://github.com/badoualy/datepicker-timeline
 * <b>PullToDismiss</b> - https://github.com/fatihsokmen/pull-to-dismiss
-## Resources
+### Resources
 * <img></img> - https://thenounproject.com/term/contact-lens/2469770/ (*)
 * <img></img> - https://thenounproject.com/term/contact-lens/2717921/
 * <img></img> - https://www.flaticon.com/free-icon/contact-lens_507109#term=contact%20lens&page=1&position=2
 * <img></img> - https://www.flaticon.com/free-icon/contact-lens_588535#term=contact%20lens&page=1&position=28 (*)
+
 <sub><sup>*Partially edited by me<sub><sup>
-## Tools
+
+### Tools
 * <a href="https://shapeshifter.design/">ShapeShifter</a> - used to create some AnimatedVectorDrawable
 * Adobe Illustrator - Used to edit some SVG
   
 # Other Infos
-Here is the "official" website I made for the app, in which you can suggest for a feature or also help me with tranlations:
+Here is the "official" website I made for the app, in which you can suggest for a feature or also help me with translations:
 * http://lenses.simoneraffaelli.it
 * http://lenses.simoneraffaelli.it/translations
 
-If you want offer me a coffee: paypal.me/SimoneRaffaelli
+If you want offer me a coffee: http://paypal.me/SimoneRaffaelli
 
   
