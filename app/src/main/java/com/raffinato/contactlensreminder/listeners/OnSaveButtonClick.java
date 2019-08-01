@@ -5,6 +5,6 @@ import android.view.View;
 
 public interface OnSaveButtonClick {
 
-    void OnSaveButtonClick(boolean switchClicked, View view);
+    void onSaveButtonClick(boolean switchClicked, View view);
 
 }

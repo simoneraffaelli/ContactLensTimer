@@ -16,9 +16,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.transition.TransitionManager;
+import androidx.transition.TransitionSet;
+import androidx.transition.Visibility;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Toast;
 
 import com.raffinato.contactlensreminder.database.DatabaseManager;
@@ -27,7 +33,7 @@ import com.raffinato.contactlensreminder.listeners.OnCaseButtonsClick;
 import com.raffinato.contactlensreminder.listeners.OnCaseClick;
 import com.raffinato.contactlensreminder.listeners.OnChipClick;
 import com.raffinato.contactlensreminder.listeners.OnSaveButtonClick;
-import com.raffinato.contactlensreminder.listeners.PullToFragmentDismiss;
+import com.raffinato.contactlensreminder.listeners.OnSettingsButtonClick;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -35,7 +41,7 @@ import org.joda.time.format.DateTimeFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnAppBarButtonClick, PullToFragmentDismiss, OnChipClick, LibraryDialogAdapter.OnLibraryItemClick, OnSaveButtonClick, OnCaseClick, OnCaseButtonsClick {
+public class MainActivity extends AppCompatActivity implements OnAppBarButtonClick, OnChipClick, OnSaveButtonClick, OnCaseClick, OnCaseButtonsClick, OnSettingsButtonClick {
 
     private List<Lens> lenses;
     private DatabaseManager dbManager;
@@ -67,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
 
         }
     }
-
 
     private void animateTransition(Fragment fragment, FragmentManager manager) {
         Transition t1 = new Slide();
@@ -103,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
     }
 
     private void onMenuClick() {
-        BottomSheetModalFragment f = BottomSheetModalFragment.newInstance();
-        f.show(getSupportFragmentManager(), f.getTag());
+        BSMenuFragment f = BSMenuFragment.newInstance();
+        f.show(getSupportFragmentManager(), "BS_MENU");
     }
 
     private void onHistoryClick() {
@@ -117,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
     /*
     @Override
     public void onSettingClick() {
-        SettingsFragment f = SettingsFragment.newInstance();
+        BSMenuFragment f = BSMenuFragment.newInstance();
         this.addFragment(f, true);
     }
     */
@@ -144,6 +149,13 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
             f.updateLenses(lenses);
             getSupportFragmentManager().beginTransaction().detach(f).attach(f).commitNowAllowingStateLoss();
             setupNotifications(lenses);
+
+            SharedPreferences pref = getSharedPreferences(MainActivity.SP_LENSESINCASE, MODE_PRIVATE);
+            final int lensesRemaining = pref.getInt(MainActivity.SP_LENSESINCASE_K1, 0) - 2;
+            SharedPreferences.Editor editor = getSharedPreferences(SP_LENSESINCASE, MODE_PRIVATE).edit();
+            editor.putInt(SP_LENSESINCASE_K1,lensesRemaining < 0 ? 0 : lensesRemaining);
+            editor.apply();
+
         }
     }
 
@@ -164,13 +176,9 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
 
         if (lenses.get(0).getExpDate().isEqual(lenses.get(1).getExpDate())) {
             NotificationScheduler.setReminder(this, AlarmReceiver.class, lenses.get(0).getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), 0);
-            //NotificationScheduler.setReminder(this, AlarmReceiver.class, new DateTime().getDayOfYear(), new DateTime().plusMinutes(1).getMinuteOfHour(), new DateTime().getHourOfDay(), 0);
         } else {
             NotificationScheduler.setReminder(this, AlarmReceiver.class, lenses.get(0).getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), NotificationHelper.LX_LENS_NOT_ID);
             NotificationScheduler.setReminder(this, AlarmReceiver.class, lenses.get(1).getExpDate().getDayOfYear(), new DateTime().withMinuteOfHour(0).getMinuteOfHour(), new DateTime().withHourOfDay(20).getHourOfDay(), NotificationHelper.RX_LENS_NOT_ID);
-            //NotificationScheduler.setReminder(this, AlarmReceiver.class, new DateTime().getDayOfYear(), new DateTime().plusMinutes(1).getMinuteOfHour(), new DateTime().getHourOfDay(), NotificationHelper.RX_LENS_NOT_ID);
-            //NotificationScheduler.setReminder(this, AlarmReceiver.class, new DateTime().getDayOfYear(), new DateTime().plusMinutes(2).getMinuteOfHour(), new DateTime().getHourOfDay(), NotificationHelper.LX_LENS_NOT_ID);
-
         }
     }
 
@@ -206,18 +214,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
     }
 
     @Override
-    public void onClick(LibraryDialogAdapter.Library lib) {
-        Uri uri = Uri.parse(lib.getUrl());
-        Intent goToUrl = new Intent(Intent.ACTION_VIEW, uri);
-        try {
-            startActivity(goToUrl);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, "couldn't launch the browser", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    public void OnSaveButtonClick(boolean switchClicked, View view) {
+    public void onSaveButtonClick(boolean switchClicked, View view) {
         lenses.clear();
 
         View body = view.findViewById(R.id.anl_body);
@@ -243,6 +240,13 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         dbManager.deactivateLenses();
         dbManager.addLenses(new LensesInUse(lenses.get(0), lenses.get(1)));
 
+        SharedPreferences pref = getSharedPreferences(MainActivity.SP_LENSESINCASE, MODE_PRIVATE);
+        final int lensesRemaining = pref.getInt(MainActivity.SP_LENSESINCASE_K1, 0) - 2;
+
+        SharedPreferences.Editor editor = getSharedPreferences(SP_LENSESINCASE, MODE_PRIVATE).edit();
+        editor.putInt(SP_LENSESINCASE_K1,lensesRemaining < 0 ? 0 : lensesRemaining);
+        editor.apply();
+
         setupNotifications(lenses);
 
         AddNewLensFragment f = ((AddNewLensFragment)getSupportFragmentManager().findFragmentByTag("BS_ANL"));
@@ -266,5 +270,35 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         AddLensesInCaseFragment f = ((AddLensesInCaseFragment)getSupportFragmentManager().findFragmentByTag("BS_HF_CASE"));
         f.dismiss();
         replaceFragment(HomeFragment.newInstance(lenses), false);
+    }
+
+    @Override
+    public void onSettingsClick() {
+        BSMenuFragment f = ((BSMenuFragment)getSupportFragmentManager().findFragmentByTag("BS_MENU"));
+        f.dismiss();
+        replaceFragment(SettingsFragment.newInstance(), true);
+    }
+
+    public void toggleBottomAppBar(int v) {
+        final TransitionSet tSet = new TransitionSet()
+                .addTransition(new Slide()
+                        .addTarget(R.id.bottomappbar)
+                        .addTarget(R.id.fab)
+                        .setInterpolator(new AccelerateDecelerateInterpolator())
+                        .setDuration(200));
+        TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.fragment_container), tSet);
+        findViewById(R.id.bottomappbar).setVisibility(v);
+        findViewById(R.id.fab).setVisibility(v);
+    }
+
+    public void launchUrl(View v) {
+        Uri uri = Uri.parse("http://www.google.it");
+        Intent url = new Intent(Intent.ACTION_VIEW, uri);
+        Log.d("YYY", "Sono dentro!");
+        try {
+            startActivity(url);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "couldn't launch browser", Toast.LENGTH_LONG).show();
+        }
     }
 }

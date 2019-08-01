@@ -10,6 +10,8 @@
         <item name="android:fontFamily">@font/nunito</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
         <item name="android:actionBarDivider">@null</item>
         <item name="actionBarDivider">@null</item>
         <item name="android:windowContentOverlay">@null</item>

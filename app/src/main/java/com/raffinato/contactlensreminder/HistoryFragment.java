@@ -80,7 +80,7 @@ public class HistoryFragment extends Fragment implements PullToDismiss.Listener 
 
         ((MainActivity) getActivity()).setupBottomAppBar();
         FloatingActionButton fab = getActivity().findViewById(R.id.fab);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent, null)));
         fab.setImageResource(R.drawable.ic_baseline_add_24px);
     }
 

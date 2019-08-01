@@ -9,8 +9,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.core.view.ViewCompat;
-import androidx.core.widget.ImageViewCompat;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import android.view.LayoutInflater;
@@ -28,8 +26,6 @@ import com.raffinato.contactlensreminder.listeners.OnSaveButtonClick;
 import org.joda.time.DateTime;
 
 import java.util.Calendar;
-
-
 
 public class AddNewLensFragment extends BottomSheetDialogFragment {
 
@@ -70,7 +66,7 @@ public class AddNewLensFragment extends BottomSheetDialogFragment {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveButtonListener.OnSaveButtonClick(switchClicked,view);
+                saveButtonListener.onSaveButtonClick(switchClicked,view);
             }
         });
     }

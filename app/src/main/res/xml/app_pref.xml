@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Impostazioni">
+        <SwitchPreference
+            android:key="key1"
+            android:icon="@drawable/ic_contact_lens_case"
+            android:title="Switch Preference"
+            android:summary="Switch Summary"
+            android:defaultValue="true" />
+        <SwitchPreference
+            android:key="key3"
+            android:title="CheckBox Preference"
+            android:summary="CheckBox Summary"
+            android:defaultValue="true"
+            android:icon="@drawable/ic_notifications_lens"/>
+    </PreferenceCategory>
+        <PreferenceCategory
+            android:title="Librerie">
+            <Preference
+                android:layout="@layout/lib_joda"
+                android:key="jodastephen"/>
+            <Preference
+                android:layout="@layout/lib_dpt"
+                android:key="fatihsokmen"/>
+            <Preference
+                android:layout="@layout/lib_ptd"
+                android:key="badoualy"/>
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:title="Risorse">
+            <Preference
+                android:layout="@layout/res_cl_logo"
+                android:key="Freepik"/>
+            <Preference
+                android:layout="@layout/res_single_cl"
+                android:key="Linseed Studio"/>
+            <Preference
+                android:layout="@layout/res_cl_box"
+                android:key="Eucalyp"/>
+            <Preference
+                android:layout="@layout/res_cl_notif"
+                android:key="Olena Panasovska"/>
+            <Preference
+                android:layout="@layout/res_world_map"
+                android:key="countricons"/>
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:title="Traduzioni">
+            <Preference
+                android:layout="@layout/trnsl_pt"
+                android:key="trnsl_pt"/>
+        </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Additional Info">
+        <Preference
+            android:layout="@layout/trnsl_pt"
+            android:key="trnsl_pt"/>
+        <Preference
+            android:layout="@layout/trnsl_pt"
+            android:key="trnsl_pt"/>
+        <Preference
+            android:layout="@layout/trnsl_pt"
+            android:key="trnsl_pt"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

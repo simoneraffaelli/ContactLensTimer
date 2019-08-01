@@ -5,17 +5,11 @@
             android:id="@+id/test_notification"
             android:title="@string/bsm_test_notif" />  -->
         <item
-            android:id="@+id/version"
-            android:title="@string/bsm_version" />
-        <item
-            android:id="@+id/dev"
-            android:title="@string/bsm_developer" />
+            android:id="@+id/open_settings"
+            android:title="@string/bsm_open_settings" />
         <item
             android:id="@+id/translations"
             android:title="@string/bsm_transl" />
-        <item
-            android:id="@+id/lib_used"
-            android:title="@string/bsm_libraries" />
         <item
             android:id="@+id/rate_app"
             android:title="@string/bsm_rate_app" />

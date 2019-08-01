@@ -8,7 +8,7 @@
     <string name="home_right_side">Right</string>
 
     <!-- Case Txt -->
-    <string name="hf_case_lenses_left">You have exactly @1 lenses left</string>
+    <string name="hf_case_lenses_left">You still have @1 pair of lenses left (@2 total)</string>
     <string name="hf_case_lenses_time_left">That will last @1 day</string>
 
     <!--   Chip Label   -->
@@ -32,10 +32,7 @@
     <string name="hist_right_lens">RIGHT</string>
 
     <!--   BottomSheetMenu   -->
-    <string name="bsm_test_notif">Test Notifications</string>
-    <string name="bsm_version">Version</string>
-    <string name="bsm_developer">Developer</string>
-    <string name="bsm_libraries">Libraries</string>
+    <string name="bsm_open_settings">Settings</string>
     <string name="bsm_rate_app">Rate App</string>
     <string name="bsm_exit">Exit</string>
     <string name="bsm_transl">Help With Translations</string>
@@ -46,7 +43,7 @@
     <string name="not_action_label">Silence</string>
 
     <!--   LIbraryItemRow   -->
-    <string name="library_item_auth_label">Made By</string>
+    <string name="library_item_auth_label">Made by</string>
 
     <!-- Spinner -->
     <string-array name="str_arr_spinner">

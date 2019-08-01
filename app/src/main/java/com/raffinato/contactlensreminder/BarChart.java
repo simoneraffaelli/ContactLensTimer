@@ -35,10 +35,10 @@ public class BarChart extends View {
         TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.HorizontalProgressBar, 0, 0);
         int mTextColor;
         try {
-            mProgressBarColor = ta.getColor(R.styleable.HorizontalProgressBar_progressBarColor, getResources().getColor(R.color.materialBlue));
+            mProgressBarColor = ta.getColor(R.styleable.HorizontalProgressBar_progressBarColor, getResources().getColor(R.color.materialBlue, null));
             mBarHeight = ta.getDimension(R.styleable.HorizontalProgressBar_BarHeight, 0.0F);
             mBarWidth = ta.getDimension(R.styleable.HorizontalProgressBar_BarWidth, 0.0F);
-            mContainerBarColor = ta.getColor(R.styleable.HorizontalProgressBar_containerBarColor, getResources().getColor(R.color.boringGrey));
+            mContainerBarColor = ta.getColor(R.styleable.HorizontalProgressBar_containerBarColor, getResources().getColor(R.color.boringGrey, null));
             mTextColor = ta.getColor(R.styleable.HorizontalProgressBar_textColor, Color.BLACK);
             mShowText = ta.getBoolean(R.styleable.HorizontalProgressBar_showText, mShowText);
             mTextMargin = ta.getDimension(R.styleable.HorizontalProgressBar_textToBarMargin, 10F);

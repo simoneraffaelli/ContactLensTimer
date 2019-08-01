@@ -10,9 +10,7 @@ import com.google.android.material.chip.Chip;
 import androidx.fragment.app.Fragment;
 import androidx.transition.AutoTransition;
 import androidx.transition.ChangeBounds;
-import androidx.transition.ChangeClipBounds;
 import androidx.transition.Fade;
-import androidx.transition.Slide;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
@@ -31,7 +29,6 @@ import com.raffinato.contactlensreminder.listeners.OnChipClick;
 
 import org.joda.time.format.DateTimeFormat;
 
-import java.io.Console;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -44,6 +41,7 @@ public class HomeFragment extends Fragment {
     private static final int LEFTLENS = 0;
     private static final int RIGHTLENS = 1;
     private final Lens[] lensArray = {null, null};
+    private int duration;
 
     private OnChipClick chipListener;
     private OnCaseClick onCaseCickListener;
@@ -56,6 +54,7 @@ public class HomeFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putParcelable(LXLENSID, lenses.isEmpty() ? null : lenses.get(0).isActive() ? lenses.get(0) : null);
         bundle.putParcelable(RXLENSID, lenses.isEmpty() ? null : lenses.get(1).isActive() ? lenses.get(1) : null);
+        bundle.putInt("Duration", lenses.isEmpty() ? 1 : lenses.get(0).getDuration().getTime());
         f.setArguments(bundle);
 
         return f;
@@ -69,6 +68,7 @@ public class HomeFragment extends Fragment {
         if (bundle != null) {
             lensArray[0] = bundle.getParcelable(LXLENSID);
             lensArray[1] = bundle.getParcelable(RXLENSID);
+            duration = bundle.getInt("Duration", 1);
         }
 
     }
@@ -130,6 +130,11 @@ public class HomeFragment extends Fragment {
         onCaseCickListener = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("YYY", "ONRESUME");
+    }
 
     private void setUpLensDesc(View lensLayout, int side) {
         Lens lens = lensArray[side];
@@ -207,8 +212,8 @@ public class HomeFragment extends Fragment {
         final int lensesRemianing = pref.getInt(MainActivity.SP_LENSESINCASE_K1, 0);
         TextView tv1 = view.findViewById(R.id.hf_case_lenses_left);
         TextView tv2 = view.findViewById(R.id.hf_case_lenses_time_left);
-        tv1.setText(getResources().getString(R.string.hf_case_lenses_left).replace("@1", String.valueOf(lensesRemianing)));
-        tv2.setText(getResources().getString(R.string.hf_case_lenses_time_left).replace("@1", String.valueOf(lensesRemianing)));
+        tv1.setText(getResources().getString(R.string.hf_case_lenses_left).replace("@1", String.valueOf(lensesRemianing / 2)).replace("@2", String.valueOf(lensesRemianing)));
+        tv2.setText(getResources().getString(R.string.hf_case_lenses_time_left).replace("@1", String.valueOf((lensesRemianing / 2) * duration)) );
         caseImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

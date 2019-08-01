@@ -5,7 +5,7 @@
     <string name="menu_history">Storico</string>
     <string name="home_left_side">Sinistra</string>
     <string name="home_right_side">Destra</string>
-    <string name="hf_case_lenses_left">Ti rimangono esattamente @1 lenti</string>
+    <string name="hf_case_lenses_left">Ti rimangono ancora @1 paia di lenti (@2 totali)</string>
     <string name="hf_case_lenses_time_left">Dureranno ancora @1 giorni </string>
     <string name="chip_refresh_label">Riutilizza le Ultime Lenti</string>
     <string name="chip_delete_lenses">Elimina le Lenti in Uso</string>
@@ -19,17 +19,14 @@
     <string name="anl_save">Salva</string>
     <string name="hist_left_lens">SINISTRA</string>
     <string name="hist_right_lens">DESTRA</string>
-    <string name="bsm_test_notif">Notifica di Test</string>
-    <string name="bsm_version">Versione</string>
-    <string name="bsm_developer">Sviluppatore</string>
-    <string name="bsm_libraries">Librerie</string>
+    <string name="bsm_open_settings">Impostazioni</string>
     <string name="bsm_rate_app">Valuta l\'App</string>
     <string name="bsm_exit">Esci</string>
     <string name="bsm_transl">Auitaci con le Traduzioni</string>
     <string name="notification_title">Le lenti sono scadute!</string>
     <string name="notification_body">Apri l\'app per controllare.</string>
     <string name="not_action_label">Silenzia</string>
-    <string name="library_item_auth_label">"Sviluppata Da "</string>
+    <string name="library_item_auth_label">"Sviluppata da "</string>
     <string-array name="str_arr_spinner">
         <item>GIORNALIERE</item>
         <item>BISETTIMANALI</item>
