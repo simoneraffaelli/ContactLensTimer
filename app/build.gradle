@@ -24,6 +24,7 @@ android {
         main {
             res.srcDirs =
                     [
+                            'src/main/res/layouts/custom_prefs',
                             'src/main/res/layouts/history_fragment',
                             'src/main/res/layouts/home_fragment',
                             'src/main/res/layouts/add_new_lens_fragment',

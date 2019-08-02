@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal" />
 
-    <com.raffinato.contactlensreminder.BarChart
+    <com.raffinato.contactlensreminder.utility.BarChart
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

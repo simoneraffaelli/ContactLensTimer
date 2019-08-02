@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.fragments;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -7,6 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.raffinato.contactlensreminder.utility.HistoryListAdapter;
+import com.raffinato.contactlensreminder.utility.classes.Lens;
+import com.raffinato.contactlensreminder.MainActivity;
+import com.raffinato.contactlensreminder.utility.PullToDismiss;
+import com.raffinato.contactlensreminder.R;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;

@@ -63,6 +63,9 @@
         <Preference
             android:layout="@layout/trnsl_pt"
             android:key="trnsl_pt"/>
+        <Preference
+            android:layout="@layout/trnsl_pt"
+            android:key="trnsl_pt"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

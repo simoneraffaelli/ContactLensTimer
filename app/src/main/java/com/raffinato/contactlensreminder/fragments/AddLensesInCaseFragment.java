@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.raffinato.contactlensreminder.R;
 import com.raffinato.contactlensreminder.listeners.OnCaseButtonsClick;
 
 public class AddLensesInCaseFragment extends BottomSheetDialogFragment {

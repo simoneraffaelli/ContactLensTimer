@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.fragments;
 
 import android.content.Context;
 import android.graphics.drawable.Animatable;
@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.badoualy.datepicker.DatePickerTimeline;
+import com.raffinato.contactlensreminder.R;
 import com.raffinato.contactlensreminder.listeners.OnSaveButtonClick;
 
 import org.joda.time.DateTime;

@@ -1,12 +1,9 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.fragments;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.raffinato.contactlensreminder.MainActivity;
+import com.raffinato.contactlensreminder.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

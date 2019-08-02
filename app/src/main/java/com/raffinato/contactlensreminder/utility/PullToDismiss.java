@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.utility;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

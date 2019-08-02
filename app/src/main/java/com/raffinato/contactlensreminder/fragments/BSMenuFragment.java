@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.fragments;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.raffinato.contactlensreminder.R;
 import com.raffinato.contactlensreminder.listeners.OnSettingsButtonClick;
 
 import android.view.LayoutInflater;

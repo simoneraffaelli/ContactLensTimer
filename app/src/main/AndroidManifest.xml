@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name="com.raffinato.contactlensreminder.AlarmReceiver"
+            android:name="com.raffinato.contactlensreminder.utility.notifications.AlarmReceiver"
             android:enabled="false"
             android:exported="true">
             <intent-filter>

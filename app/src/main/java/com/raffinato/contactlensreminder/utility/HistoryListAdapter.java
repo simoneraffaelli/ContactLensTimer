@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.utility;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.raffinato.contactlensreminder.R;
+import com.raffinato.contactlensreminder.utility.classes.Lens;
+import com.raffinato.contactlensreminder.utility.classes.LensesInUse;
 
 import org.joda.time.format.DateTimeFormat;
 

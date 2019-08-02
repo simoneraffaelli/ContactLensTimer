@@ -18,7 +18,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
-import androidx.transition.Visibility;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,13 +26,24 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Toast;
 
-import com.raffinato.contactlensreminder.database.DatabaseManager;
+import com.raffinato.contactlensreminder.fragments.AddLensesInCaseFragment;
+import com.raffinato.contactlensreminder.fragments.AddNewLensFragment;
+import com.raffinato.contactlensreminder.fragments.BSMenuFragment;
+import com.raffinato.contactlensreminder.fragments.HistoryFragment;
+import com.raffinato.contactlensreminder.fragments.HomeFragment;
+import com.raffinato.contactlensreminder.fragments.SettingsFragment;
+import com.raffinato.contactlensreminder.utility.classes.Lens;
+import com.raffinato.contactlensreminder.utility.classes.LensesInUse;
+import com.raffinato.contactlensreminder.utility.database.DatabaseManager;
 import com.raffinato.contactlensreminder.listeners.OnAppBarButtonClick;
 import com.raffinato.contactlensreminder.listeners.OnCaseButtonsClick;
 import com.raffinato.contactlensreminder.listeners.OnCaseClick;
 import com.raffinato.contactlensreminder.listeners.OnChipClick;
 import com.raffinato.contactlensreminder.listeners.OnSaveButtonClick;
 import com.raffinato.contactlensreminder.listeners.OnSettingsButtonClick;
+import com.raffinato.contactlensreminder.utility.notifications.AlarmReceiver;
+import com.raffinato.contactlensreminder.utility.notifications.NotificationHelper;
+import com.raffinato.contactlensreminder.utility.notifications.NotificationScheduler;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
