@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.raffinato.contactlensreminder"
         minSdkVersion 23
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 20
         versionName "3.0.0B"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

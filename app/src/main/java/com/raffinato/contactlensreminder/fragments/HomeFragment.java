@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.chip.Chip;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.transition.AutoTransition;
 import androidx.transition.ChangeBounds;
 import androidx.transition.Fade;
@@ -107,6 +108,7 @@ public class HomeFragment extends Fragment {
         });
 
         setupLensCaseTracker(view);
+        setupNotificationsScreen(view);
 
         return view;
     }
@@ -160,7 +162,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupLensCaseTracker(View view) {
-        setupLensCaseView(view);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final boolean check = pref.getBoolean("key1", false);
+        if (check) {
+            view.findViewById(R.id.hf_expand).setVisibility(View.VISIBLE);
+            setupLensCaseView(view);
+        } else {
+            view.findViewById(R.id.hf_case).setVisibility(View.GONE);
+            view.findViewById(R.id.hf_expand).setVisibility(View.GONE);
+        }
 
     }
 
@@ -225,6 +235,33 @@ public class HomeFragment extends Fragment {
             }
         });
 
+    }
+
+    private void setupNotificationsScreen(View view) {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final boolean check = pref.getBoolean("key3", false);
+        if (check) {
+            view.findViewById(R.id.hf_ntf_container).setVisibility(View.VISIBLE);
+            calculateNotifications(view);
+        } else {
+            view.findViewById(R.id.hf_ntf_container).setVisibility(View.GONE);
+        }
+
+    }
+
+    private void calculateNotifications(View view) {
+        SharedPreferences pref = getContext().getSharedPreferences(MainActivity.SP_LENSESINCASE, MODE_PRIVATE);
+        final int lensesRemaining = pref.getInt(MainActivity.SP_LENSESINCASE_K1, 0);
+        if(lensesRemaining <= 4) {
+            view.findViewById(R.id.ht_notif_relax).setVisibility(View.GONE);
+            view.findViewById(R.id.hf_notif_layout).setVisibility(View.VISIBLE);
+            ((ImageView) view.findViewById(R.id.hf_notif_img)).setImageDrawable(getResources().getDrawable(R.drawable.ic_error, null));
+            TextView t = view.findViewById(R.id.hf_notif_txt);
+            t.setText(R.string.hf_notif_1);
+            t.setTextColor(getResources().getColor(R.color.materialRed, null));
+        } else {
+            view.findViewById(R.id.ht_notif_relax).setVisibility(View.VISIBLE);
+        }
     }
 
     public void updateLenses(List<Lens> list) {

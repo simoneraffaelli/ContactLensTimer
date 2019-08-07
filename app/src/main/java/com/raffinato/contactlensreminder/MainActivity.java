@@ -1,9 +1,6 @@
 package com.raffinato.contactlensreminder;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 
 import com.github.badoualy.datepicker.DatePickerTimeline;
@@ -19,12 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.Toast;
 
 import com.raffinato.contactlensreminder.fragments.AddLensesInCaseFragment;
 import com.raffinato.contactlensreminder.fragments.AddNewLensFragment;
@@ -127,15 +122,8 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
 
         HistoryFragment f = HistoryFragment.newInstance(lenses);
         this.addFragment(f, true);
+        toggleBottomAppBar(View.GONE);
     }
-
-    /*
-    @Override
-    public void onSettingClick() {
-        BSMenuFragment f = BSMenuFragment.newInstance();
-        this.addFragment(f, true);
-    }
-    */
 
     private void onButtonClick() {
         FragmentManager manager = getSupportFragmentManager();
@@ -207,14 +195,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
                 onMenuClick();
             }
         });
-        /*
-        bottom_appbar.findViewById(R.id.app_bar_setting).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onSettingClick();
-            }
-        });
-        */
+
         bottom_appbar.findViewById(R.id.app_bar_history).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -299,16 +280,5 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.fragment_container), tSet);
         findViewById(R.id.bottomappbar).setVisibility(v);
         findViewById(R.id.fab).setVisibility(v);
-    }
-
-    public void launchUrl(View v) {
-        Uri uri = Uri.parse("http://www.google.it");
-        Intent url = new Intent(Intent.ACTION_VIEW, uri);
-        Log.d("YYY", "Sono dentro!");
-        try {
-            startActivity(url);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, "couldn't launch browser", Toast.LENGTH_LONG).show();
-        }
     }
 }

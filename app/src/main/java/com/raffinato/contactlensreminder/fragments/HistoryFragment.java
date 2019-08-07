@@ -1,12 +1,9 @@
 package com.raffinato.contactlensreminder.fragments;
 
-import android.content.Context;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.raffinato.contactlensreminder.utility.HistoryListAdapter;
 import com.raffinato.contactlensreminder.utility.classes.Lens;
 import com.raffinato.contactlensreminder.MainActivity;
@@ -73,31 +70,13 @@ public class HistoryFragment extends Fragment implements PullToDismiss.Listener 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
-        fab.setImageResource(R.drawable.ic_baseline_done_24px);
-        BottomAppBar bottom_appbar = getActivity().findViewById(R.id.bottomappbar);
-        bottom_appbar.replaceMenu(R.menu.empty_menu);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        ((MainActivity) getActivity()).setupBottomAppBar();
-        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent, null)));
-        fab.setImageResource(R.drawable.ic_baseline_add_24px);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
+        ((MainActivity)getActivity()).toggleBottomAppBar(View.VISIBLE);
     }
 
     @Override

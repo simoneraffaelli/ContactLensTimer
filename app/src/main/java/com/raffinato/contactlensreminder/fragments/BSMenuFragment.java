@@ -53,6 +53,7 @@ public class BSMenuFragment extends BottomSheetDialogFragment {
                 switch (menuItem.getItemId()) {
                     case R.id.translations:
                         translations();
+                        break;
                     case R.id.open_settings:
                         settingsButtonListener.onSettingsClick();
                         break;

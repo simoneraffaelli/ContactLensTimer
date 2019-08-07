@@ -42,6 +42,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private final static String COUNTRICONS_AUTHOR = "countricons";
     private final static String COUNTRICONS_URL = "https://www.flaticon.com/packs/countricons";
 
+    private final static String FEEDBACK_KEY = "feedback";
+    private final static String FEEDBACK_URL = "mailto:raffinatodev@gmail.com";
+
+    private final static String DEV_KEY = "dev";
+    private final static String DEV_URL = "https://www.simoneraffaelli.it";
+
+    private final static String DONATE_KEY = "donate";
+    private final static String DONATE_URL = "https://paypal.me/SimoneRaffaelli";
+
+    private final static String SRC_KEY = "sourcecode";
+    private final static String SRC_URL = "https://github.com/Raffaa/ContactLensTimer";
+
+
     public SettingsFragment() {
     }
 
@@ -75,6 +88,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         setCreditItemListener(CL_NOTIF_AUTHOR, CL_NOTIF_URL);
         setCreditItemListener(CL_BOX_AUTHOR, CL_BOX_URL);
         setCreditItemListener(COUNTRICONS_AUTHOR, COUNTRICONS_URL);
+
+        setCreditItemListener(FEEDBACK_KEY, FEEDBACK_URL);
+        setCreditItemListener(DEV_KEY, DEV_URL);
+        setCreditItemListener(DONATE_KEY, DONATE_URL);
+        setCreditItemListener(SRC_KEY, SRC_URL);
 
         return v;
     }

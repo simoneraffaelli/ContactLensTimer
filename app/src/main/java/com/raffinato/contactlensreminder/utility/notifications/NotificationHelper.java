@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.utility.notifications;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -9,6 +9,9 @@ import android.graphics.Color;
 import android.provider.Settings;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+
+import com.raffinato.contactlensreminder.MainActivity;
+import com.raffinato.contactlensreminder.R;
 
 public class NotificationHelper {
     private static final String NOTIFICATION_CHANNEL_ID = "10001";

@@ -1,12 +1,12 @@
-package com.raffinato.contactlensreminder.database;
+package com.raffinato.contactlensreminder.utility.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.raffinato.contactlensreminder.Lens;
-import com.raffinato.contactlensreminder.LensesInUse;
+import com.raffinato.contactlensreminder.utility.classes.Lens;
+import com.raffinato.contactlensreminder.utility.classes.LensesInUse;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;

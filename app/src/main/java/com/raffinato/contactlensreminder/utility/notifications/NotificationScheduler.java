@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.utility.notifications;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

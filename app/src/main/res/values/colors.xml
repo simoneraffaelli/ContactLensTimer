@@ -7,4 +7,5 @@
     <color name="almostBlue">#e8eaf6</color>
     <color name="boringGrey">#20000000</color>
     <color name="justBlack">#000</color>
+    <color name="materialRed">#f44336</color>
 </resources>

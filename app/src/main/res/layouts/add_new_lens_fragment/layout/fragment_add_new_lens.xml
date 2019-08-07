@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/anl_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
@@ -13,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="6dp"
-        android:id="@+id/anl_ll">
+        android:padding="6dp">
 <!-- Titolo di pannello -->
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -28,7 +26,6 @@
             />
 <!--  Switch per la scelta della lente, diviso in lente destra e sinistra  -->
         <include
-            android:id="@+id/anl_swc"
             layout="@layout/anl_lenses_switch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

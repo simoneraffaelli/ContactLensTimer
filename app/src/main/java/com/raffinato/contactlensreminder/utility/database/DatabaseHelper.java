@@ -1,11 +1,11 @@
-package com.raffinato.contactlensreminder.database;
+package com.raffinato.contactlensreminder.utility.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.raffinato.contactlensreminder.LensesCase;
-import com.raffinato.contactlensreminder.LensesInUse;
+import com.raffinato.contactlensreminder.utility.classes.LensesCase;
+import com.raffinato.contactlensreminder.utility.classes.LensesInUse;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "lenstimerv2.db";

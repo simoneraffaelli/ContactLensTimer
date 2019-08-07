@@ -2,22 +2,22 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="Impostazioni">
+        android:title="@string/stt_cat_settings">
         <SwitchPreference
             android:key="key1"
             android:icon="@drawable/ic_contact_lens_case"
-            android:title="Switch Preference"
-            android:summary="Switch Summary"
+            android:title="@string/stt_case_swc_title"
+            android:summary="@string/stt_case_swc_summ"
             android:defaultValue="true" />
         <SwitchPreference
             android:key="key3"
-            android:title="CheckBox Preference"
-            android:summary="CheckBox Summary"
+            android:title="@string/stt_notif_title"
+            android:summary="@string/stt_notif_summ"
             android:defaultValue="true"
             android:icon="@drawable/ic_notifications_lens"/>
     </PreferenceCategory>
         <PreferenceCategory
-            android:title="Librerie">
+            android:title="@string/stt_cat_libraries">
             <Preference
                 android:layout="@layout/lib_joda"
                 android:key="jodastephen"/>
@@ -29,7 +29,7 @@
                 android:key="badoualy"/>
         </PreferenceCategory>
         <PreferenceCategory
-            android:title="Risorse">
+            android:title="@string/stt_cat_resources">
             <Preference
                 android:layout="@layout/res_cl_logo"
                 android:key="Freepik"/>
@@ -47,25 +47,25 @@
                 android:key="countricons"/>
         </PreferenceCategory>
         <PreferenceCategory
-            android:title="Traduzioni">
+            android:title="@string/stt_cat_translations">
             <Preference
                 android:layout="@layout/trnsl_pt"
                 android:key="trnsl_pt"/>
         </PreferenceCategory>
     <PreferenceCategory
-        android:title="Additional Info">
+        android:title="@string/stt_cat_appinfo">
         <Preference
-            android:layout="@layout/trnsl_pt"
-            android:key="trnsl_pt"/>
+            android:layout="@layout/dev_feedback"
+            android:key="feedback"/>
         <Preference
-            android:layout="@layout/trnsl_pt"
-            android:key="trnsl_pt"/>
+            android:layout="@layout/dev_name"
+            android:key="dev"/>
         <Preference
-            android:layout="@layout/trnsl_pt"
-            android:key="trnsl_pt"/>
+            android:layout="@layout/dev_donate"
+            android:key="donate"/>
         <Preference
-            android:layout="@layout/trnsl_pt"
-            android:key="trnsl_pt"/>
+            android:layout="@layout/dev_src"
+            android:key="sourcecode"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

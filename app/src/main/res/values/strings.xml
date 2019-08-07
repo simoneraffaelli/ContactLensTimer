@@ -11,12 +11,14 @@
     <string name="hf_case_lenses_left">You still have @1 pair of lenses left (@2 total)</string>
     <string name="hf_case_lenses_time_left">That will last @1 day</string>
 
+    <string name="hf_notif_1">Check your stock levels. Soon you\'ll need to rebuy your lenses.</string>
+    <string name="hf_no_notif_txt">0 Notifications = Relax!</string>
+
     <!--   Chip Label   -->
     <string name="chip_refresh_label">Reuse Last Lenses</string>
     <string name="chip_delete_lenses">Delete Current Lenses</string>
 
     <!-- AddLensesInCaseBS -->
-    <string name="hf_case_title">Lenses Remaining</string>
 
     <!--   AddNewLens   -->
     <string name="anl_title">Use new lenses</string>
@@ -26,6 +28,8 @@
     <string name="anl_combo_desc">Choose your lens type</string>
     <string name="anl_switch_txt">Both lenses have same deadline</string>
     <string name="anl_save">Save</string>
+    <string name="anl_reset_btn">Reset</string>
+
 
     <!--   History Item Row Label   -->
     <string name="hist_left_lens">LEFT</string>
@@ -37,13 +41,31 @@
     <string name="bsm_exit">Exit</string>
     <string name="bsm_transl">Help With Translations</string>
 
-    <!--   NotificationAction   -->
+    <!--   NotificationActions   -->
     <string name="notification_title">Lenses have expired!</string>
     <string name="notification_body">Open app to check it out.</string>
     <string name="not_action_label">Silence</string>
 
-    <!--   LIbraryItemRow   -->
+    <!--   SettingsFragment   -->
     <string name="library_item_auth_label">Made by</string>
+
+    <string name="stt_cat_settings">Settings</string>
+    <string name="stt_cat_libraries">Libraries</string>
+    <string name="stt_cat_resources">Resources</string>
+    <string name="stt_cat_translations">Translations</string>
+    <string name="stt_cat_appinfo">Additional Info</string>
+    <string name="stt_case_swc_title">Track lenses stock level</string>
+    <string name="stt_case_swc_summ">Track how many lenses you have left</string>
+    <string name="stt_notif_title">Show visual notifications</string>
+    <string name="stt_notif_summ">Show notifications or offers on your screen</string>
+    <string name="stt_feedback_title">Leave a feedback</string>
+    <string name="stt_feedback_summ">Send me an email</string>
+    <string name="stt_dev_title">Developer</string>
+    <string name="stt_dev_summ">Who am I?</string>
+    <string name="stt_donations_title">Donate :)</string>
+    <string name="stt_donations_summ">If you want to offer me a coffee</string>
+    <string name="stt_src_title">Source Code</string>
+    <string name="stt_src_summ">See you on GH</string>
 
     <!-- Spinner -->
     <string-array name="str_arr_spinner">

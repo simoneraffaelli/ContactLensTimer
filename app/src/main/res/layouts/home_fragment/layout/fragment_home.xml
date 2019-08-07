@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/almostBlue"
     android:orientation="vertical"
-    android:id="@+id/hf_vcontainer">
+    android:id="@+id/hf_vcontainer"
+    android:layout_marginBottom="16dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <include
                 android:id="@+id/left_lens"
@@ -122,15 +124,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/hf_ntf_title"
             android:textSize="21sp"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:text="Notifications"
+            android:text="@string/notification_title"
             android:padding="8dp"
             android:layout_margin="4dp"
             android:layout_marginBottom="16dp"/>
             <LinearLayout
+                android:id="@+id/ht_notif_relax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -145,7 +147,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0 Notifications = Relax"
+                android:text="@string/hf_no_notif_txt"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/almostBlue"
@@ -153,5 +155,11 @@
                 android:layout_margin="4dp"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
+        <include
+            android:id="@+id/hf_notif_layout"
+            layout="@layout/notification_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
+
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder;
+package com.raffinato.contactlensreminder.utility.classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
