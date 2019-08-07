@@ -15,6 +15,8 @@ import com.raffinato.contactlensreminder.utility.database.DatabaseHelper;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
+import java.util.Objects;
+
 public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
@@ -35,9 +37,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 
                     c = db.rawQuery(query, null);
                     while (c.moveToNext()) {
-                        Lens rxLens = new Lens(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_STATE_RX)) == 1, Lens.Duration.fromInt(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_DURATION_RX))),
+                        Lens rxLens = new Lens(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_STATE_RX)) == 1, Objects.requireNonNull(Lens.Duration.fromInt(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_DURATION_RX)))),
                                 DateTime.parse(c.getString(c.getColumnIndex(LensesInUse.COLUMN_INIT_DATE_RX)), DateTimeFormat.forPattern("dd/MM/yyyy")));
-                        Lens lxLens = new Lens(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_STATE_LX)) == 1, Lens.Duration.fromInt(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_DURATION_LX))),
+                        Lens lxLens = new Lens(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_STATE_LX)) == 1, Objects.requireNonNull(Lens.Duration.fromInt(c.getInt(c.getColumnIndex(LensesInUse.COLUMN_DURATION_LX)))),
                                 DateTime.parse(c.getString(c.getColumnIndex(LensesInUse.COLUMN_INIT_DATE_LX)), DateTimeFormat.forPattern("dd/MM/yyyy")));
                         if(rxLens.isActive() || lxLens.isActive()) {
                             if (rxLens.getExpDate().isEqual(lxLens.getExpDate())) {
@@ -66,7 +68,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 return;
             }
             if (intent.getAction().equalsIgnoreCase(NotificationHelper.ACTION_SILENCE)) {
-                int notId = intent.getExtras().getInt(NotificationHelper.SILENCE_EXTRA, 0);
+                int notId = Objects.requireNonNull(intent.getExtras()).getInt(NotificationHelper.SILENCE_EXTRA, 0);
                 Bundle b = intent.getExtras();
                 NotificationScheduler.cancelReminder(context, AlarmReceiver.class, notId);
                 nh.cancelNotifications();

@@ -45,6 +45,7 @@ import org.joda.time.format.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements OnAppBarButtonClick, OnChipClick, OnSaveButtonClick, OnCaseClick, OnCaseButtonsClick, OnSettingsButtonClick {
 
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.getSupportActionBar().setDisplayShowCustomEnabled(true);
+        Objects.requireNonNull(this.getSupportActionBar()).setDisplayShowCustomEnabled(true);
         this.getSupportActionBar().setCustomView(LayoutInflater.from(this).inflate(R.layout.actionbar_custom, null));
         this.getSupportActionBar().setElevation(0);
 
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
             lenses.add(new Lens(tmp.get(0).getDuration(), new DateTime()));
             lenses.add(new Lens(tmp.get(1).getDuration(), new DateTime()));
             dbManager.addLenses(new LensesInUse(lenses.get(0), lenses.get(1)));
-            f.updateLenses(lenses);
+            Objects.requireNonNull(f).updateLenses(lenses);
             getSupportFragmentManager().beginTransaction().detach(f).attach(f).commitNowAllowingStateLoss();
             setupNotifications(lenses);
 
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         lenses.add(null);
         lenses.add(null);
         dbManager.deactivateLenses();
-        f.updateLenses(lenses);
+        Objects.requireNonNull(f).updateLenses(lenses);
         getSupportFragmentManager().beginTransaction().detach(f).attach(f).commitNowAllowingStateLoss();
         NotificationScheduler.cancelReminders(this, AlarmReceiver.class);
     }
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         manager.popBackStackImmediate();
     }
 
-    public void setupBottomAppBar() {
+    private void setupBottomAppBar() {
         BottomAppBar bottom_appbar = findViewById(R.id.bottomappbar);
         bottom_appbar.replaceMenu(R.menu.bottom_appbar_menu);
 
@@ -220,13 +221,13 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
 
         DateTime lxDate = new DateTime(DateTime.parse(datePickerLx.getSelectedDay() + "/" + (datePickerLx.getSelectedMonth() + 1) + "/" + datePickerLx.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
         Lens.Duration lxDuration = Lens.Duration.fromSpinnerSelection(mySpinnerLx.getSelectedItemPosition());
-        lenses.add(0, new Lens(lxDuration, lxDate));
+        lenses.add(0, new Lens(Objects.requireNonNull(lxDuration), lxDate));
         if(switchClicked) {
             lenses.add(new Lens(lxDuration, lxDate));
         } else {
             DateTime rxDate = new DateTime(DateTime.parse(datePickerRx.getSelectedDay() + "/" + (datePickerRx.getSelectedMonth() + 1) + "/" + datePickerRx.getSelectedYear(), DateTimeFormat.forPattern("dd/MM/yyyy")));
             Lens.Duration rxDuration = Lens.Duration.fromSpinnerSelection(mySpinnerRx.getSelectedItemPosition());
-            lenses.add(new Lens(rxDuration, rxDate));
+            lenses.add(new Lens(Objects.requireNonNull(rxDuration), rxDate));
         }
         dbManager.deactivateLenses();
         dbManager.addLenses(new LensesInUse(lenses.get(0), lenses.get(1)));
@@ -241,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         setupNotifications(lenses);
 
         AddNewLensFragment f = ((AddNewLensFragment)getSupportFragmentManager().findFragmentByTag("BS_ANL"));
-        f.dismiss();
+        Objects.requireNonNull(f).dismiss();
         replaceFragment(HomeFragment.newInstance(lenses), false);
     }
 
@@ -259,14 +260,14 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         editor.apply();
 
         AddLensesInCaseFragment f = ((AddLensesInCaseFragment)getSupportFragmentManager().findFragmentByTag("BS_HF_CASE"));
-        f.dismiss();
+        Objects.requireNonNull(f).dismiss();
         replaceFragment(HomeFragment.newInstance(lenses), false);
     }
 
     @Override
     public void onSettingsClick() {
         BSMenuFragment f = ((BSMenuFragment)getSupportFragmentManager().findFragmentByTag("BS_MENU"));
-        f.dismiss();
+        Objects.requireNonNull(f).dismiss();
         replaceFragment(SettingsFragment.newInstance(), true);
     }
 

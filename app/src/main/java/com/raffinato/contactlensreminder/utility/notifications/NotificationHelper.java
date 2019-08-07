@@ -13,6 +13,8 @@ import androidx.core.content.ContextCompat;
 import com.raffinato.contactlensreminder.MainActivity;
 import com.raffinato.contactlensreminder.R;
 
+import java.util.Objects;
+
 public class NotificationHelper {
     private static final String NOTIFICATION_CHANNEL_ID = "10001";
     public static final String ACTION_SILENCE = "com.android.example.SILENCE_NOTIFICATION";
@@ -75,6 +77,6 @@ public class NotificationHelper {
 
     public void cancelNotifications() {
         mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.cancelAll();
+        Objects.requireNonNull(mNotificationManager).cancelAll();
     }
 }

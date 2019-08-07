@@ -1,165 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/almostBlue"
-    android:orientation="vertical"
-    android:id="@+id/hf_vcontainer"
-    android:layout_marginBottom="16dp">
+    android:id="@+id/hf_nested_scroll"
+    android:scrollbars="none">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/ll_rc_bkg"
-        android:id="@+id/hf_hcontainer">
+        android:id="@+id/hf_vcontainer"
+        android:layout_marginBottom="32dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
-
-            <include
-                android:id="@+id/left_lens"
-                layout="@layout/lens_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <include
-                android:id="@+id/right_lens"
-                layout="@layout/lens_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/hf_case"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
-            <ImageView
-                android:id="@+id/hf_case_img"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".2"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_contact_lens_case"
-                android:layout_margin="4dp"/>
+            android:orientation="vertical"
+            android:background="@drawable/ll_rc_bkg"
+            android:id="@+id/hf_hcontainer">
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".8"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:layout_margin="4dp">
-                <TextView
-                    android:id="@+id/hf_case_lenses_left"
-                    android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+                <include
+                    android:id="@+id/left_lens"
+                    layout="@layout/lens_layout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:padding="2dp"/>
-                <TextView
-                    android:id="@+id/hf_case_lenses_time_left"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/right_lens"
+                    layout="@layout/lens_layout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:padding="2dp"/>
+                    android:layout_weight="1" />
             </LinearLayout>
-        </LinearLayout>
-        <ImageView
-            android:id="@+id/hf_expand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/avd_exp_coll"
-            android:layout_gravity="center_horizontal"/>
-    </LinearLayout>
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/chip_vertical_margin"
-        android:layout_marginBottom="@dimen/chip_vertical_margin"
-        android:padding="@dimen/chip_group_padding"
-        android:layout_gravity="center"
-        android:id="@+id/chip_container">
-
-        <com.google.android.material.chip.ChipGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_refresh"
-                style="@style/Widget.MaterialComponents.Chip.Action"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chip_refresh_label"
-                android:textAlignment="center"
-                app:chipBackgroundColor="@color/colorPrimary"
-                app:chipIcon="@drawable/ic_baseline_refresh_24px"
-                app:chipStrokeColor="@color/colorAccent"
-                app:chipStrokeWidth="@dimen/chip_stroke_width" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_delete"
-                style="@style/Widget.MaterialComponents.Chip.Action"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chip_delete_lenses"
-                app:chipBackgroundColor="@color/colorPrimary"
-                app:chipIcon="@drawable/ic_delete_black_24px"
-                app:chipStrokeColor="@color/colorAccent"
-                app:chipStrokeWidth="@dimen/chip_stroke_width" />
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rc_bkg"
-        android:orientation="vertical"
-        android:id="@+id/hf_ntf_container">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"
-            android:text="@string/notification_title"
-            android:padding="8dp"
-            android:layout_margin="4dp"
-            android:layout_marginBottom="16dp"/>
             <LinearLayout
-                android:id="@+id/ht_notif_relax"
+                android:id="@+id/hf_case"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <ImageView
+                    android:id="@+id/hf_case_img"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_contact_lens_case"
+                    android:layout_margin="4dp"
+                    android:contentDescription="TODO" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".8"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:layout_margin="4dp">
+                    <TextView
+                        android:id="@+id/hf_case_lenses_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:padding="2dp"/>
+                    <TextView
+                        android:id="@+id/hf_case_lenses_time_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:padding="2dp"/>
+                </LinearLayout>
+            </LinearLayout>
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_notifications_lens"
-                android:layout_margin="4dp"
-                android:layout_gravity="center_horizontal"/>
+                android:id="@+id/hf_expand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/avd_exp_coll"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="TODO" />
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/chip_vertical_margin"
+            android:layout_marginBottom="@dimen/chip_vertical_margin"
+            android:padding="@dimen/chip_group_padding"
+            android:layout_gravity="center"
+            android:id="@+id/chip_container"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_refresh"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chip_refresh_label"
+                    android:textAlignment="center"
+                    app:chipBackgroundColor="@color/colorPrimary"
+                    app:chipIcon="@drawable/ic_baseline_refresh_24px"
+                    app:chipStrokeColor="@color/colorAccent"
+                    app:chipStrokeWidth="@dimen/chip_stroke_width" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_delete"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chip_delete_lenses"
+                    app:chipBackgroundColor="@color/colorPrimary"
+                    app:chipIcon="@drawable/ic_delete_black_24px"
+                    app:chipStrokeColor="@color/colorAccent"
+                    app:chipStrokeWidth="@dimen/chip_stroke_width" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rc_bkg"
+            android:orientation="vertical"
+            android:id="@+id/hf_ntf_container">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hf_no_notif_txt"
-                android:textSize="20sp"
+                android:textSize="21sp"
                 android:textStyle="bold"
-                android:textColor="@color/almostBlue"
+                android:textColor="@color/colorAccent"
+                android:text="@string/hf_notif_title"
                 android:padding="8dp"
                 android:layout_margin="4dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_marginBottom="16dp"/>
+                <LinearLayout
+                    android:id="@+id/ht_notif_relax"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_notifications_lens"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center_horizontal"
+                    android:contentDescription="TODO" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hf_no_notif_txt"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/almostBlue"
+                    android:padding="8dp"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
+            <include
+                android:id="@+id/hf_notif_layout"
+                layout="@layout/notification_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
         </LinearLayout>
-        <include
-            android:id="@+id/hf_notif_layout"
-            layout="@layout/notification_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class HistoryFragment extends Fragment implements PullToDismiss.Listener {
 
@@ -58,7 +59,7 @@ public class HistoryFragment extends Fragment implements PullToDismiss.Listener 
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), LinearLayoutManager.VERTICAL));
         HistoryListAdapter adapter = new HistoryListAdapter(l);
         recyclerView.setAdapter(adapter);
 
@@ -76,17 +77,17 @@ public class HistoryFragment extends Fragment implements PullToDismiss.Listener 
     public void onDestroy() {
         super.onDestroy();
 
-        ((MainActivity)getActivity()).toggleBottomAppBar(View.VISIBLE);
+        ((MainActivity) Objects.requireNonNull(getActivity())).toggleBottomAppBar(View.VISIBLE);
     }
 
     @Override
     public void onDismissed() {
-        ((MainActivity) getActivity()).dismissFragment();
+        ((MainActivity) Objects.requireNonNull(getActivity())).dismissFragment();
     }
 
     @Override
     public boolean onShouldInterceptTouchEvent() {
-        return ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition() != 0 && !l.isEmpty();
+        return ((LinearLayoutManager) Objects.requireNonNull(recyclerView.getLayoutManager())).findFirstCompletelyVisibleItemPosition() != 0 && !l.isEmpty();
     }
 
 }

@@ -14,7 +14,7 @@
             android:title="@string/stt_notif_title"
             android:summary="@string/stt_notif_summ"
             android:defaultValue="true"
-            android:icon="@drawable/ic_notifications_lens"/>
+            android:icon="@drawable/ic_notifications"/>
     </PreferenceCategory>
         <PreferenceCategory
             android:title="@string/stt_cat_libraries">

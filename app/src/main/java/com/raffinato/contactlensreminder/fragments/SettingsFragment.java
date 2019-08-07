@@ -16,6 +16,8 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.raffinato.contactlensreminder.MainActivity;
 import com.raffinato.contactlensreminder.R;
 
+import java.util.Objects;
+
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     private final static String JODA_TIME_AUTHOR = "jodastephen";
@@ -67,7 +69,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ((MainActivity)getActivity()).toggleBottomAppBar(View.GONE);
+        ((MainActivity) Objects.requireNonNull(getActivity())).toggleBottomAppBar(View.GONE);
     }
 
     @Override
@@ -101,7 +103,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onDestroy() {
         super.onDestroy();
 
-        ((MainActivity)getActivity()).toggleBottomAppBar(View.VISIBLE);
+        ((MainActivity) Objects.requireNonNull(getActivity())).toggleBottomAppBar(View.VISIBLE);
     }
 
     private void setCreditItemListener(final String author, final String url) {

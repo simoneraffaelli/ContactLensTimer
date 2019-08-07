@@ -32,7 +32,7 @@ public class LensesCase implements Serializable, BaseColumns {
         this.lensesLeft = lensesLeft;
     }
 
-    public boolean isActive() {
+    private boolean isActive() {
         return state;
     }
 

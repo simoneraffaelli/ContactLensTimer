@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:padding="8dp"
-            android:text="@string/anl_title"
+            android:text="@string/case_title"
             android:textColor="@color/colorAccent"
             android:textSize="21sp"
             android:textStyle="bold" />

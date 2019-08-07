@@ -6,8 +6,8 @@ android {
         applicationId "com.raffinato.contactlensreminder"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 20
-        versionName "3.0.0B"
+        versionCode 21
+        versionName "3.0.0rc"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -16,7 +16,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

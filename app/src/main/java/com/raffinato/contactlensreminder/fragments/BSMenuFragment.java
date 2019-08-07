@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 public class BSMenuFragment extends BottomSheetDialogFragment {
 
     private OnSettingsButtonClick settingsButtonListener;
@@ -61,7 +63,7 @@ public class BSMenuFragment extends BottomSheetDialogFragment {
                         launchMarket();
                         break;
                     case R.id.exit:
-                        getActivity().finishAndRemoveTask();
+                        Objects.requireNonNull(getActivity()).finishAndRemoveTask();
                         break;
                 }
                 return true;
@@ -90,7 +92,7 @@ public class BSMenuFragment extends BottomSheetDialogFragment {
     }
 
     private void launchMarket() {
-        Uri uri = Uri.parse("market://details?id=" + getActivity().getPackageName());
+        Uri uri = Uri.parse("market://details?id=" + Objects.requireNonNull(getActivity()).getPackageName());
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         try {
             startActivity(goToMarket);

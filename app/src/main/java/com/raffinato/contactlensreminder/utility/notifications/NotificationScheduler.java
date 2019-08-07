@@ -41,6 +41,7 @@ public class NotificationScheduler {
         intent1.putExtra("notification-id", notificationId);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, notificationId, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+        assert am != null;
         am.setRepeating(AlarmManager.RTC_WAKEUP, setcalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
@@ -48,6 +49,7 @@ public class NotificationScheduler {
         Intent intent1 = new Intent(context, cls);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, notificationId, intent1, 0);
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+        assert am != null;
         am.cancel(pendingIntent);
         pendingIntent.cancel();
     }
@@ -56,35 +58,6 @@ public class NotificationScheduler {
         NotificationScheduler.cancelReminder(context, cls, 0);
         NotificationScheduler.cancelReminder(context, cls, NotificationHelper.LX_LENS_NOT_ID);
         NotificationScheduler.cancelReminder(context, cls, NotificationHelper.RX_LENS_NOT_ID);
-    }
-
-    public static void testNotifications(Context context, Class<?> cls, DateTime date) {
-        Calendar calendar = Calendar.getInstance();
-        Calendar setcalendar = Calendar.getInstance();
-
-        setcalendar.set(Calendar.DAY_OF_YEAR, date.getDayOfYear());
-        setcalendar.set(Calendar.HOUR_OF_DAY, date.getHourOfDay());
-        setcalendar.set(Calendar.MINUTE, date.getMinuteOfHour());
-        setcalendar.set(Calendar.SECOND, 0);
-
-        cancelReminder(context, cls, 6021996);
-
-        if (setcalendar.before(calendar))
-            setcalendar.add(Calendar.DATE, 1);
-
-        // Enable a receiver
-        ComponentName receiver = new ComponentName(context, cls);
-        PackageManager pm = context.getPackageManager();
-
-        pm.setComponentEnabledSetting(receiver,
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                PackageManager.DONT_KILL_APP);
-
-        Intent intent1 = new Intent(context, cls);
-        intent1.putExtra("notification-id", 6021996);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 6021996, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, setcalendar.getTimeInMillis(), 60000, pendingIntent);
     }
 
 }

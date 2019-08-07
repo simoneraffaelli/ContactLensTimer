@@ -27,10 +27,11 @@ import com.raffinato.contactlensreminder.listeners.OnSaveButtonClick;
 import org.joda.time.DateTime;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class AddNewLensFragment extends BottomSheetDialogFragment {
 
-    private boolean switchClicked = false;
+    private boolean switchClicked = true;
 
     private OnSaveButtonClick saveButtonListener;
 
@@ -75,7 +76,7 @@ public class AddNewLensFragment extends BottomSheetDialogFragment {
 
     private void configureSwitch(final View view) {
         final LinearLayoutCompat leftLens = view.findViewById(R.id.anl_swc_left_lens);
-        final ViewGroup rightLens = view.findViewById(R.id.anl_swc_right_lens);
+        final LinearLayoutCompat rightLens = view.findViewById(R.id.anl_swc_right_lens);
         final ImageView leftImg = leftLens.findViewById(R.id.anl_swc_lens_img);
         final TextView leftTxt = leftLens.findViewById(R.id.anl_swc_lens_txt);
         final ImageView rightImg = rightLens.findViewById(R.id.anl_swc_lens_img);
@@ -109,7 +110,7 @@ public class AddNewLensFragment extends BottomSheetDialogFragment {
         });
 
         ImageView swc = view.findViewById(R.id.anl_swc_link);
-        final AnimatedVectorDrawableCompat avdcRev = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_anim_rev);
+        final AnimatedVectorDrawableCompat avdcRev = AnimatedVectorDrawableCompat.create(Objects.requireNonNull(getContext()), R.drawable.avd_anim_rev);
         final AnimatedVectorDrawableCompat avdc = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_anim);
         swc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,6 +162,9 @@ public class AddNewLensFragment extends BottomSheetDialogFragment {
                 return true;
             }
         });
+
+        leftLens.setClickable(false);
+        rightLens.setClickable(false);
     }
 
     private void setupAddNewLensView(View view) {
@@ -186,17 +190,15 @@ public class AddNewLensFragment extends BottomSheetDialogFragment {
     private void setupView(boolean isLeft, ImageView img, TextView txt, DatePickerTimeline date, AppCompatSpinner spin) {
         DateTime now = DateTime.now();
 
-        img.setImageDrawable(getResources().getDrawable(isLeft ? R.drawable.ic_left_cl_blue : R.drawable.ic_right_cl, null));
+        img.setImageDrawable(getResources().getDrawable(isLeft ? R.drawable.ic_left_cl_grey : R.drawable.ic_right_cl_grey, null));
         txt.setText(getResources().getString(isLeft ? R.string.anl_switch_left : R.string.anl_switch_right));
-        if (isLeft) {
-            txt.setTextColor(getResources().getColor(R.color.colorAccent, null));
-        }
+        txt.setTextColor(getResources().getColor(R.color.boringGrey, null));
         date.getMonthView().setDefaultColor(getResources().getColor(R.color.almostBlue, null));
         date.setFirstVisibleDate(now.getYear() - 1, Calendar.JANUARY, 1);
         date.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 1);
         date.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
         date.setFollowScroll(false);
-        spin.setAdapter(ArrayAdapter.createFromResource(getActivity(), R.array.str_arr_spinner, R.layout.support_simple_spinner_dropdown_item));
+        spin.setAdapter(ArrayAdapter.createFromResource(Objects.requireNonNull(getActivity()), R.array.str_arr_spinner, R.layout.support_simple_spinner_dropdown_item));
     }
 
     @Override

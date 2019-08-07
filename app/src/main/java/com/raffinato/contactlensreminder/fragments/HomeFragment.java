@@ -35,6 +35,7 @@ import com.raffinato.contactlensreminder.listeners.OnChipClick;
 import org.joda.time.format.DateTimeFormat;
 
 import java.util.List;
+import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -157,12 +158,12 @@ public class HomeFragment extends Fragment {
 
         if (lens != null && lensArray[side].getRemainingTime().getDays() <= 0) {
             ((BarChart) lensLayout.findViewById(R.id.progress_bar)).setExpiredColor();
-            ((ImageView) lensLayout.findViewById(R.id.lens_drwbl)).setImageDrawable(getActivity().getDrawable(R.drawable.ic_contact_lens_red));
+            ((ImageView) lensLayout.findViewById(R.id.lens_drwbl)).setImageDrawable(Objects.requireNonNull(getActivity()).getDrawable(R.drawable.ic_contact_lens_red));
         }
     }
 
     private void setupLensCaseTracker(View view) {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Objects.requireNonNull(getContext()));
         final boolean check = pref.getBoolean("key1", false);
         if (check) {
             view.findViewById(R.id.hf_expand).setVisibility(View.VISIBLE);
@@ -180,7 +181,7 @@ public class HomeFragment extends Fragment {
         final LinearLayout lensContainer = view.findViewById(R.id.hf_hcontainer);
         final LinearLayout fragContainer = view.findViewById(R.id.hf_vcontainer);
         final ImageView caseImg = view.findViewById(R.id.hf_case_img);
-        final AnimatedVectorDrawableCompat avdc = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_exp_coll);
+        final AnimatedVectorDrawableCompat avdc = AnimatedVectorDrawableCompat.create(Objects.requireNonNull(getContext()), R.drawable.avd_exp_coll);
         final AnimatedVectorDrawableCompat avdcRev = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_coll_exp);
         final TransitionSet tSet = new TransitionSet()
                 .addTransition(new ChangeBounds()
@@ -192,9 +193,12 @@ public class HomeFragment extends Fragment {
                         .setInterpolator(new AccelerateDecelerateInterpolator())
                         .setDuration(350))
                 .addTransition(new AutoTransition()
+                        .addTarget(R.id.hf_nested_scroll)
                         .addTarget(R.id.chip_container)
                         .addTarget(R.id.hf_expand)
                         .addTarget(R.id.hf_ntf_container)
+                        .addTarget(R.id.hf_notif_layout)
+                        .addTarget(R.id.ht_notif_relax)
                         .setInterpolator(new AccelerateDecelerateInterpolator())
                         .setDuration(200));
         img.setOnClickListener(new View.OnClickListener() {
@@ -238,7 +242,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupNotificationsScreen(View view) {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Objects.requireNonNull(getContext()));
         final boolean check = pref.getBoolean("key3", false);
         if (check) {
             view.findViewById(R.id.hf_ntf_container).setVisibility(View.VISIBLE);
@@ -250,7 +254,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void calculateNotifications(View view) {
-        SharedPreferences pref = getContext().getSharedPreferences(MainActivity.SP_LENSESINCASE, MODE_PRIVATE);
+        SharedPreferences pref = Objects.requireNonNull(getContext()).getSharedPreferences(MainActivity.SP_LENSESINCASE, MODE_PRIVATE);
         final int lensesRemaining = pref.getInt(MainActivity.SP_LENSESINCASE_K1, 0);
         if(lensesRemaining <= 4) {
             view.findViewById(R.id.ht_notif_relax).setVisibility(View.GONE);

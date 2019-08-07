@@ -32,8 +32,10 @@
 
     <string name="hf_case_lenses_left">You still have @1 pair of lenses left (@2 total)</string>
     <string name="hf_case_lenses_time_left">That will last @1 day</string>
+    <string name="case_title">Add new lenses</string>
     <string name="hf_notif_1">Check your stock levels. Soon you\'ll need to rebuy your lenses.</string>
     <string name="hf_no_notif_txt">0 Notificações = Relax!</string>
+    <string name="hf_notif_title">Notificações</string>
     <string name="anl_title">Use new lenses</string>
     <string name="anl_save">Save</string>
     <string name="anl_reset_btn">Reset</string>

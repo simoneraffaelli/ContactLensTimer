@@ -11,8 +11,11 @@
     <string name="hf_case_lenses_left">You still have @1 pair of lenses left (@2 total)</string>
     <string name="hf_case_lenses_time_left">That will last @1 day</string>
 
+    <string name="case_title">Add New Lenses</string>
+
     <string name="hf_notif_1">Check your stock levels. Soon you\'ll need to rebuy your lenses.</string>
     <string name="hf_no_notif_txt">0 Notifications = Relax!</string>
+    <string name="hf_notif_title">Notifications </string>
 
     <!--   Chip Label   -->
     <string name="chip_refresh_label">Reuse Last Lenses</string>

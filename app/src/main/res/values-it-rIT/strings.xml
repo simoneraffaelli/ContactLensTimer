@@ -7,8 +7,10 @@
     <string name="home_right_side">Destra</string>
     <string name="hf_case_lenses_left">Ti rimangono ancora @1 paia di lenti (@2 totali)</string>
     <string name="hf_case_lenses_time_left">Dureranno ancora @1 giorni </string>
+    <string name="case_title">Aggiungi Lenti</string>
     <string name="hf_notif_1">Controlla quante lenti ti sono rimaste. tra poco dovrai ricomprarle.</string>
     <string name="hf_no_notif_txt">0 Notifiche = Relax!</string>
+    <string name="hf_notif_title">Notifiche</string>
     <string name="chip_refresh_label">Riutilizza le Ultime Lenti</string>
     <string name="chip_delete_lenses">Elimina le Lenti in Uso</string>
     <string name="anl_title">Usa lenti nuove</string>

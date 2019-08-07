@@ -40,7 +40,7 @@ public class Lens implements Parcelable {
         this.initialDate = date;
     }
 
-    Lens(Parcel in) {
+    private Lens(Parcel in) {
         duration = (Duration) in.readValue(Duration.class.getClassLoader());
         expDate = (DateTime) in.readValue(DateTime.class.getClassLoader());
         isActive = in.readInt() == 1;
