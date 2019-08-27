@@ -8,7 +8,7 @@ If you want to contribute to this project just fork the project, make your modif
 To report an issue send me an email or open a new issue in the "Issues" section here on Github.
 
 # Screenshots
-I'll add screenshot as soon as I finish v3 upgrade
+Go to PlayStore :P
 
 # Credits
 ### Libraries
