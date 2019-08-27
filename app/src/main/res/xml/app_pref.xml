@@ -8,12 +8,12 @@
             android:icon="@drawable/ic_contact_lens_case"
             android:title="@string/stt_case_swc_title"
             android:summary="@string/stt_case_swc_summ"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
         <SwitchPreference
             android:key="key3"
             android:title="@string/stt_notif_title"
             android:summary="@string/stt_notif_summ"
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:icon="@drawable/ic_notifications"/>
     </PreferenceCategory>
         <PreferenceCategory

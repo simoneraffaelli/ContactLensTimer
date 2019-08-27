@@ -199,6 +199,7 @@ public class HomeFragment extends Fragment {
                         .addTarget(R.id.hf_ntf_container)
                         .addTarget(R.id.hf_notif_layout)
                         .addTarget(R.id.ht_notif_relax)
+                        .addTarget(fragContainer)
                         .setInterpolator(new AccelerateDecelerateInterpolator())
                         .setDuration(200));
         img.setOnClickListener(new View.OnClickListener() {
@@ -255,6 +256,13 @@ public class HomeFragment extends Fragment {
 
     private void calculateNotifications(View view) {
         SharedPreferences pref = Objects.requireNonNull(getContext()).getSharedPreferences(MainActivity.SP_LENSESINCASE, MODE_PRIVATE);
+        SharedPreferences sett = PreferenceManager.getDefaultSharedPreferences(Objects.requireNonNull(getContext()));
+        final boolean check = sett.getBoolean("key1", false);
+        if (!check) {
+            view.findViewById(R.id.ht_notif_relax).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.hf_notif_layout).setVisibility(View.GONE);
+            return;
+        }
         final int lensesRemaining = pref.getInt(MainActivity.SP_LENSESINCASE_K1, 0);
         if(lensesRemaining <= 4) {
             view.findViewById(R.id.ht_notif_relax).setVisibility(View.GONE);

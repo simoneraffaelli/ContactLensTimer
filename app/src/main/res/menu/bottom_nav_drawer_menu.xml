@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
-        <!--<item
-            android:id="@+id/test_notification"
-            android:title="@string/bsm_test_notif" />  -->
         <item
             android:id="@+id/open_settings"
             android:title="@string/bsm_open_settings" />
