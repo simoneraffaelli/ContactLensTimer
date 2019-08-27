@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/stt_cat_settings">
+        <SwitchPreference
+            android:key="key1"
+            android:icon="@drawable/ic_contact_lens_case"
+            android:title="@string/stt_case_swc_title"
+            android:summary="@string/stt_case_swc_summ"
+            android:defaultValue="false" />
+        <SwitchPreference
+            android:key="key3"
+            android:title="@string/stt_notif_title"
+            android:summary="@string/stt_notif_summ"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_notifications"/>
+    </PreferenceCategory>
+        <PreferenceCategory
+            android:title="@string/stt_cat_libraries">
+            <Preference
+                android:layout="@layout/lib_joda"
+                android:key="jodastephen"/>
+            <Preference
+                android:layout="@layout/lib_dpt"
+                android:key="fatihsokmen"/>
+            <Preference
+                android:layout="@layout/lib_ptd"
+                android:key="badoualy"/>
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:title="@string/stt_cat_resources">
+            <Preference
+                android:layout="@layout/res_cl_logo"
+                android:key="Freepik"/>
+            <Preference
+                android:layout="@layout/res_single_cl"
+                android:key="Linseed Studio"/>
+            <Preference
+                android:layout="@layout/res_cl_box"
+                android:key="Eucalyp"/>
+            <Preference
+                android:layout="@layout/res_cl_notif"
+                android:key="Olena Panasovska"/>
+            <Preference
+                android:layout="@layout/res_world_map"
+                android:key="countricons"/>
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:title="@string/stt_cat_translations">
+            <Preference
+                android:layout="@layout/trnsl_pt"
+                android:key="trnsl_pt"/>
+        </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/stt_cat_appinfo">
+        <Preference
+            android:layout="@layout/dev_feedback"
+            android:key="feedback"/>
+        <Preference
+            android:layout="@layout/dev_name"
+            android:key="dev"/>
+        <Preference
+            android:layout="@layout/dev_donate"
+            android:key="donate"/>
+        <Preference
+            android:layout="@layout/dev_src"
+            android:key="sourcecode"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

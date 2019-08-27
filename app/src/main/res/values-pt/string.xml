@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lembrete de lentes de contato</string>
+    <string name="menu_history">Històrico</string>
+    <string name="actionbar_label">Lembrete</string>
+    <string name="home_left_side">Esquerdo</string>
+    <string name="home_right_side">Direito</string>
+    <string name="chip_refresh_label">Reutilizar ùltimas lentes</string>
+    <string name="chip_delete_lenses">Deletar lentes atuais</string>
+    <string name="anl_switch_left">Esquerda</string>
+    <string name="anl_switch_right">Direita</string>
+    <string name="anl_datepicker_desc">Escolha a data que você começou a usar essas lentes</string>
+    <string name="anl_combo_desc">Escolha seu tipo de lente</string>
+    <string name="anl_switch_txt">Ambas as lentes tem o mesmo prazo</string>
+    <string name="hist_left_lens">Esquerda</string>
+    <string name="hist_right_lens">Direita</string>
+    <string name="bsm_rate_app">Avalie este app</string>
+    <string name="bsm_exit">Sair</string>
+    <string name="notification_title">As lentes expiraram!</string>
+    <string name="notification_body">Abra o app para verificar</string>
+    <string name="not_action_label">Silêncio</string>
+    <string name="library_item_auth_label">Feito por</string>
+    <string-array name="str_arr_spinner">
+        <item>DIRARIAMENTE</item>
+        <item>2 VEZES NA SEMANA</item>
+        <item>MENSALMENTE</item>
+        <item>A CADA 2 MESES</item>
+        <item>A CADA 4 MESES</item>
+        <item>ANUALMENTE</item>
+    </string-array>
+    <string name="bsm_transl">Ajude-nos com a tradução</string>
+
+    <string name="hf_case_lenses_left">You still have @1 pair of lenses left (@2 total)</string>
+    <string name="hf_case_lenses_time_left">That will last @1 day</string>
+    <string name="case_title">Add new lenses</string>
+    <string name="hf_notif_1">Check your stock levels. Soon you\'ll need to rebuy your lenses.</string>
+    <string name="hf_no_notif_txt">0 Notificações = Relax!</string>
+    <string name="hf_notif_title">Notificações</string>
+    <string name="anl_title">Use new lenses</string>
+    <string name="anl_save">Save</string>
+    <string name="anl_reset_btn">Reset</string>
+    <string name="bsm_open_settings">Settings</string>
+    <string name="stt_cat_settings">Settings</string>
+    <string name="stt_cat_libraries">Libraries</string>
+    <string name="stt_cat_resources">Resources</string>
+    <string name="stt_cat_translations">Translations</string>
+    <string name="stt_cat_appinfo">Additional Info</string>
+    <string name="stt_case_swc_title">Track lenses stock level</string>
+    <string name="stt_case_swc_summ">Track how many lenses you have left</string>
+    <string name="stt_notif_title">Show visual notifications</string>
+    <string name="stt_notif_summ">Show notifications or offers on your screen</string>
+    <string name="stt_feedback_title">Leave a feedback</string>
+    <string name="stt_feedback_summ">Send me an email</string>
+    <string name="stt_dev_title">Developer</string>
+    <string name="stt_dev_summ">Who am I?</string>
+    <string name="stt_donations_title">Donate :)</string>
+    <string name="stt_donations_summ">If you want to offer me a coffee</string>
+    <string name="stt_src_title">Source Code</string>
+    <string name="stt_src_summ">See you on GH</string>
+</resources>

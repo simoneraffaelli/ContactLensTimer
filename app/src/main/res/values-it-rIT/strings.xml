@@ -1,30 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Promemoria per Lenti</string>
-    <string name="actionbar_label">Promemoria</string>
+    <string name="actionbar_label">Lensminder</string>
     <string name="menu_history">Storico</string>
     <string name="home_left_side">Sinistra</string>
     <string name="home_right_side">Destra</string>
+    <string name="hf_case_lenses_left">Ti rimangono ancora @1 paia di lenti (@2 totali)</string>
+    <string name="hf_case_lenses_time_left">Dureranno ancora @1 giorni </string>
+    <string name="case_title">Aggiungi Lenti</string>
+    <string name="hf_notif_1">Controlla quante lenti ti sono rimaste. tra poco dovrai ricomprarle.</string>
+    <string name="hf_no_notif_txt">0 Notifiche = Relax!</string>
+    <string name="hf_notif_title">Notifiche</string>
     <string name="chip_refresh_label">Riutilizza le Ultime Lenti</string>
     <string name="chip_delete_lenses">Elimina le Lenti in Uso</string>
+    <string name="anl_title">Usa lenti nuove</string>
     <string name="anl_switch_left">SINISTRA</string>
     <string name="anl_switch_right">DESTRA</string>
     <string name="anl_datepicker_desc">Scegli la data in cui hai messo le lenti</string>
     <string name="anl_combo_desc">Scegli il tipo di lente</string>
     <string name="anl_switch_txt">Entrambe le lenti hanno la stessa scadenza</string>
+    <string name="anl_save">Salva</string>
+    <string name="anl_reset_btn">Reset</string>
     <string name="hist_left_lens">SINISTRA</string>
     <string name="hist_right_lens">DESTRA</string>
-    <string name="bsm_test_notif">Notifica di Test</string>
-    <string name="bsm_version">Versione</string>
-    <string name="bsm_developer">Sviluppatore</string>
-    <string name="bsm_libraries">Librerie</string>
+    <string name="bsm_open_settings">Impostazioni</string>
     <string name="bsm_rate_app">Valuta l\'App</string>
     <string name="bsm_exit">Esci</string>
-    <string name="bsm_transl">Auitaci con le Traduzioni</string>
+    <string name="bsm_transl">Auitami con le Traduzioni</string>
     <string name="notification_title">Le lenti sono scadute!</string>
     <string name="notification_body">Apri l\'app per controllare.</string>
     <string name="not_action_label">Silenzia</string>
-    <string name="library_item_auth_label">"Sviluppata Da "</string>
+    <string name="library_item_auth_label">"Sviluppata da "</string>
+    <string name="stt_cat_settings">Impostazioni</string>
+    <string name="stt_cat_libraries">Librerie</string>
+    <string name="stt_cat_resources">Risorse</string>
+    <string name="stt_cat_translations">Traduzioni</string>
+    <string name="stt_cat_appinfo">Informazioni Aggiuntive</string>
+    <string name="stt_case_swc_title">Monitora lenti rimanenti</string>
+    <string name="stt_case_swc_summ">Tieni traccia di quante lenti ti sono rimaste</string>
+    <string name="stt_notif_title">Mostra notifiche visuali</string>
+    <string name="stt_notif_summ">Mostra notifiche o offerte a schermo</string>
+    <string name="stt_feedback_title">Lascia un tuo feedback</string>
+    <string name="stt_feedback_summ">Inviami un email</string>
+    <string name="stt_dev_title">Sviluppatore</string>
+    <string name="stt_dev_summ">Chi sono?</string>
+    <string name="stt_donations_title">Donate :)</string>
+    <string name="stt_donations_summ">Se vuoi offrimi un caffe</string>
+    <string name="stt_src_title">Source Code</string>
+    <string name="stt_src_summ">Ci vediamo su GH</string>
     <string-array name="str_arr_spinner">
         <item>GIORNALIERE</item>
         <item>BISETTIMANALI</item>

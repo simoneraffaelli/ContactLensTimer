@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/lenslayout_general_padding">
+
+    <TextView
+        android:id="@+id/lens_side"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/lens_drwbl"
+        android:layout_width="@dimen/lens_icon_dimen"
+        android:layout_height="@dimen/lens_icon_dimen"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/ic_contact_lens" />
+
+    <TextView
+        android:id="@+id/lens_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/remaining_days_dimen" />
+
+    <TextView
+        android:id="@+id/lens_deadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+    <com.raffinato.contactlensreminder.utility.BarChart
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/barchart_vertical_margin"
+        android:layout_marginTop="@dimen/barchart_vertical_margin"
+        app:BarHeight="@dimen/barhcart_height"
+        app:containerBarColor="#80c1d5e0"
+        app:progressBarColor="@color/colorAccent"
+        app:showText="false" />
+</LinearLayout>

@@ -1,43 +1,74 @@
 <resources>
     <string name="app_name">Contact Lens Reminder</string>
 
-    <string name="actionbar_label">Reminder</string>
+    <string name="actionbar_label">Lensminder</string>
     <string name="menu_history">History</string>
 
     <string name="home_left_side">Left</string>
     <string name="home_right_side">Right</string>
 
+    <!-- Case Txt -->
+    <string name="hf_case_lenses_left">You still have @1 pair of lenses left (@2 total)</string>
+    <string name="hf_case_lenses_time_left">That will last @1 day</string>
+
+    <string name="case_title">Add New Lenses</string>
+
+    <string name="hf_notif_1">Check your stock levels. Soon you\'ll need to rebuy your lenses.</string>
+    <string name="hf_no_notif_txt">0 Notifications = Relax!</string>
+    <string name="hf_notif_title">Notifications </string>
+
     <!--   Chip Label   -->
     <string name="chip_refresh_label">Reuse Last Lenses</string>
     <string name="chip_delete_lenses">Delete Current Lenses</string>
 
+    <!-- AddLensesInCaseBS -->
+
     <!--   AddNewLens   -->
+    <string name="anl_title">Use new lenses</string>
     <string name="anl_switch_left">LEFT</string>
     <string name="anl_switch_right">RIGHT</string>
     <string name="anl_datepicker_desc">Pick the date you started using this lens</string>
     <string name="anl_combo_desc">Choose your lens type</string>
     <string name="anl_switch_txt">Both lenses have same deadline</string>
+    <string name="anl_save">Save</string>
+    <string name="anl_reset_btn">Reset</string>
+
 
     <!--   History Item Row Label   -->
     <string name="hist_left_lens">LEFT</string>
     <string name="hist_right_lens">RIGHT</string>
 
     <!--   BottomSheetMenu   -->
-    <string name="bsm_test_notif">Test Notifications</string>
-    <string name="bsm_version">Version</string>
-    <string name="bsm_developer">Developer</string>
-    <string name="bsm_libraries">Libraries</string>
+    <string name="bsm_open_settings">Settings</string>
     <string name="bsm_rate_app">Rate App</string>
     <string name="bsm_exit">Exit</string>
     <string name="bsm_transl">Help With Translations</string>
 
-    <!--   NotificationAction   -->
+    <!--   NotificationActions   -->
     <string name="notification_title">Lenses have expired!</string>
     <string name="notification_body">Open app to check it out.</string>
     <string name="not_action_label">Silence</string>
 
-    <!--   LIbraryItemRow   -->
-    <string name="library_item_auth_label">Made By</string>
+    <!--   SettingsFragment   -->
+    <string name="library_item_auth_label">Made by</string>
+
+    <string name="stt_cat_settings">Settings</string>
+    <string name="stt_cat_libraries">Libraries</string>
+    <string name="stt_cat_resources">Resources</string>
+    <string name="stt_cat_translations">Translations</string>
+    <string name="stt_cat_appinfo">Additional Info</string>
+    <string name="stt_case_swc_title">Track lenses stock level</string>
+    <string name="stt_case_swc_summ">Track how many lenses you have left</string>
+    <string name="stt_notif_title">Show visual notifications</string>
+    <string name="stt_notif_summ">Show notifications or offers on your screen</string>
+    <string name="stt_feedback_title">Leave a feedback</string>
+    <string name="stt_feedback_summ">Send me an email</string>
+    <string name="stt_dev_title">Developer</string>
+    <string name="stt_dev_summ">Who am I?</string>
+    <string name="stt_donations_title">Donate :)</string>
+    <string name="stt_donations_summ">If you want to offer me a coffee</string>
+    <string name="stt_src_title">Source Code</string>
+    <string name="stt_src_summ">See you on GH</string>
 
     <!-- Spinner -->
     <string-array name="str_arr_spinner">

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.raffinato.contactlensreminder.utility.PullToDismiss xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pull_dismiss_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:scrollbars="vertical" />
+
+</com.raffinato.contactlensreminder.utility.PullToDismiss>
