@@ -7,6 +7,8 @@ import com.github.badoualy.datepicker.DatePickerTimeline;
 import com.google.android.material.bottomappbar.BottomAppBar;
 
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.transition.Slide;
 import androidx.transition.Transition;
 import androidx.fragment.app.Fragment;
@@ -25,7 +27,7 @@ import com.raffinato.contactlensreminder.fragments.AddLensesInCaseFragment;
 import com.raffinato.contactlensreminder.fragments.AddNewLensFragment;
 import com.raffinato.contactlensreminder.fragments.BSMenuFragment;
 import com.raffinato.contactlensreminder.fragments.HistoryFragment;
-import com.raffinato.contactlensreminder.fragments.HomeFragment;
+import com.raffinato.contactlensreminder.fragments.home.HomeFragment;
 import com.raffinato.contactlensreminder.fragments.SettingsFragment;
 import com.raffinato.contactlensreminder.utility.classes.Lens;
 import com.raffinato.contactlensreminder.utility.classes.LensesInUse;
@@ -64,18 +66,14 @@ public class MainActivity extends AppCompatActivity implements OnAppBarButtonCli
         Objects.requireNonNull(this.getSupportActionBar()).setDisplayShowCustomEnabled(true);
         this.getSupportActionBar().setCustomView(LayoutInflater.from(this).inflate(R.layout.actionbar_custom, null));
         this.getSupportActionBar().setElevation(0);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         if (savedInstanceState == null) {
             lenses = dbManager.getLenses();
             addFragment(HomeFragment.newInstance(lenses), false);
 
             setupBottomAppBar();
-            findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onButtonClick();
-                }
-            });
+            findViewById(R.id.fab).setOnClickListener(Navigation.createNavigateOnClickListener(R.id.BSMenuFragment));
 
         }
     }

@@ -1,4 +1,4 @@
-package com.raffinato.contactlensreminder.fragments;
+package com.raffinato.contactlensreminder.fragments.home;
 
 import android.content.Context;
 import android.content.SharedPreferences;
